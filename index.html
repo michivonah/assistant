@@ -70,8 +70,8 @@
 
       // all answers
       function getanswer(message){
-        if(message.toUpperCase().includes('HI') || message.toUpperCase().includes('HALLO') || message.toUpperCase().includes('HELLO') || message.toUpperCase().includes('SALI') || message.toUpperCase().includes('GRÜEZI') || message.toUpperCase().includes('HOI') || message.toUpperCase().includes('HEY')){
-          var answer = "Hallo!";
+        if(message.toUpperCase().includes('HI') || message.toUpperCase().includes('HALLO') || message.toUpperCase().includes('HELLO') || message.toUpperCase().includes('SALI') || message.toUpperCase().includes('GRÜEZI') || message.toUpperCase().includes('HOI') || message.toUpperCase().includes('HEY') || message.toUpperCase().includes('CIAO')){
+          var answer = "Schön dich zu sehen!";
           sendanswer(answer);
         }
         else if(message.toUpperCase().includes('WITZ')){
@@ -197,6 +197,10 @@
         }
         else if(message.toUpperCase().includes('NEIN')){
           var answer = "Schade";
+          sendanswer(answer);
+        }
+        else if(message.toUpperCase().includes('AUF WIEDERSEHEN') || message.toUpperCase().includes('TSCHAU') || message.toUpperCase().includes('BYE') || message.toUpperCase().includes('TSCHÜSS')){
+          var answer = "Bis nächstes Mal.";
           sendanswer(answer);
         }
         else{
