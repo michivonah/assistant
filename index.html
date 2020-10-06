@@ -70,8 +70,8 @@
 
       // all answers
       function getanswer(message){
-        if(message.toUpperCase().includes('HI')){
-          var answer = "Hallo zurück!";
+        if(message.toUpperCase().includes('HI') || message.toUpperCase().includes('HALLO') || message.toUpperCase().includes('HELLO') || message.toUpperCase().includes('SALI') || message.toUpperCase().includes('GRÜEZI') || message.toUpperCase().includes('HOI') || message.toUpperCase().includes('HEY')){
+          var answer = "Hallo!";
           sendanswer(answer);
         }
         else if(message.toUpperCase().includes('WITZ')){
@@ -84,7 +84,7 @@
           var answer = "Mir geht es gut, danke der Nachfrage.";
           sendanswer(answer);
         }
-        else if(message.toUpperCase().includes('HEISST DU')){
+        else if(message.toUpperCase().includes('HEISST DU') || message.toUpperCase().includes('DEIN') && message.toUpperCase().includes('NAME')){
           var answer = "Ich heise Tap.";
           sendanswer(answer);
         }
@@ -92,7 +92,7 @@
           var answer = "Hmm, meine Lieblingsfarbe ist grün.";
           sendanswer(answer);
         }
-        else if(message.toUpperCase().includes('SPÄT IST ES')){
+        else if(message.toUpperCase().includes('SPÄT IST ES') || message.toUpperCase().includes('ZEIT')){
           var answer = "Unten im Eck dieser Textblase siehst du die Uhrzeit.";
           sendanswer(answer);
         }
@@ -116,8 +116,66 @@
           var answer = "Nein, ich habe schon etwas gegessen.";
           sendanswer(answer);
         }
-        else if(message.toUpperCase().includes('FEEDBACK')){
+        else if(message.toUpperCase().includes('FEEDBACK') || message.toUpperCase().includes('RÜCKMELDUNG') || message.toUpperCase().includes('BEWERTUNG')){
           var answer = "Gerne kannst du mir ein Feedback geben. https://forms.gle/fkmXZpzzS7wssVHm6";
+          sendanswer(answer);
+        }
+        else if(message.toUpperCase().includes('WASSER') && message.toUpperCase().includes('TAG')){
+          var answer = "An einem Tag solltest du ungefähr 2 Liter Wasser trinken.";
+          sendanswer(answer);
+        }
+        else if(message.toUpperCase().includes('ZUCKER') && message.toUpperCase().includes('TAG')){
+          var answer = "Pro Tag solltest du nicht mehr als 50g Zucker zu dir nehmen.";
+          sendanswer(answer);
+        }
+        else if(message.toUpperCase().includes('SPRACHEN') && message.toUpperCase().includes('DU')){
+          var answer = "Ich spreche zurzeit nur Deutsch und kann noch nicht übersetzen.";
+          sendanswer(answer);
+        }
+        else if(message.toUpperCase().includes('FUNFACT')){
+          var answer = "Skorpione können bis zu einem Jahr ohne Nahrung überleben.";
+          sendanswer(answer);
+        }
+        else if(message.toUpperCase().includes('HAST DU BROT')){
+          var answer = "Nein und ich habe auch keine Nägel.";
+          sendanswer(answer);
+        }
+        else if(message.toUpperCase().includes('ÖFFNE') && message.toUpperCase().includes('SPOTIFY')){
+          var answer = "Wird gemacht....";
+          sendanswer(answer);
+          window.open('https://open.spotify.com/playlist/37i9dQZEVXbJiyhoAPEfMK?si=2fX4Gxt8TVCseW9yyJ6bdQ');
+        }
+        else if(message.toUpperCase().includes('#INFO')){
+          var answer = "Befehl noch nicht verfügbar.";
+          //var answer = "Letztes Update: 06.10.2020";
+          sendanswer(answer);
+        }
+        else if(message.toUpperCase().includes('WANN') && message.toUpperCase().includes('HALLOWEEN')){
+          var answer = "Halloween ist dieses Jahr am 31. Oktober.";
+          sendanswer(answer);
+        }
+        else if(message.toUpperCase().includes('WANN') && message.toUpperCase().includes('WEIHNACHTEN')){
+          var answer = "Weihnachten ist am 25. Dezember.";
+          sendanswer(answer);
+        }
+        else if(message.toUpperCase().includes('ENTWICKLER')){
+          var answer = "Ich wurde von Michi von Ah programmiert. Er heisst auf Instagram @michivonah";
+          sendanswer(answer);
+        }
+        else if(message.toUpperCase().includes('WER') && message.toUpperCase().includes('ELON MUSK')){
+          var answer = "Elon Musk ist der Gründer und CEO von Tesla. Er ist 49 Jahre alt.";
+          sendanswer(answer);
+        }
+        else if(message.toUpperCase().includes('WER') && message.toUpperCase().includes('MARK ZUCKERBERG')){
+          var answer = "Mark Zuckerberg ist der Gründer von Facebook. Ihm gehören zudem die Apps WhatsApp und Instagram. Er ist 36 Jahre alt.";
+          sendanswer(answer);
+        }
+        else if(message.toUpperCase().includes('JA')){
+          var answer = "Super";
+          sendanswer(answer);
+        }
+        else if(message.toUpperCase().includes('NEIN')){
+          var answer = "Schade";
           sendanswer(answer);
         }
         else{
