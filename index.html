@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+         <title>Chatbot</title>
+         <meta name="apple-mobile-web-app-title" content="Chatbot">
+         <link rel="icon" type="image/png" href="logo.png">
+         <link rel="shortcut icon" type="image/png" href="logo.png">
+         <link rel="apple-touch-icon" href="logo.png" sizes="any">
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
+         <link rel="stylesheet" type="text/css" href="style.css"/>
+         <script language="javascript" type="text/javascript" src="script.js"></script>
+         <meta charset="UTF-8">
+         <meta name="theme-color" content="#000000">
+         <meta name="apple-mobile-web-app-status-bar-style" content="#ffffff">
+         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+         <meta name="mobile-web-app-capable" content="yes">
+         <meta name="apple-mobile-web-app-capable" content="yes">
+         <link rel="manifest" href="manifest.json">
+         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+          <!-- Loadingscreen -->
+          <div id="loading-screen">
+              <div id="loading"></div>
+          </div>
+
+      <div id="content">
+        <div id="chat">
+          <div class="received-message">
+            <p>Hallo, mein Name ist Tap. Wie kann ich dir helfen?</p>
+            <h5 class="received-date">Heute</h5>
+          </div>
+          <div id="writing">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+        </div>
+        <p id="error-empty" class="error">Ihre Nachricht ist leer.</p>
+        <div id="user-chatfield">
+          <input id="chat-input" type="text" placeholder="Type here....">
+          <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
+        </div>
+      </div>
+
+
+
+      <script>
+      // Loading
+      $(window).on("load", function(){
+        $("#loading-screen").fadeOut(750);
+      });
+
+      // send answer
+      function sendanswer(answer){
+        var remessagebubbel = $("<div class='received-message'></div>");
+        var gettime = new Date();
+        var h = gettime.getHours();
+        var min = gettime.getMinutes();
+        var time = h + ':' + min;
+        var remessagedate = $("<h5 class='received-date'>15:26, 04.10.2020</h5>").text(time);
+        var remessagetext = $("<p>text</p>").text(answer);
+        remessagebubbel.append(remessagetext, remessagedate);
+        $('#writing').css('display', 'none');
+        $("#chat").append(remessagebubbel);
+      }
+
+      // all answers
+      function getanswer(message){
+        if(message.toUpperCase().includes('HI')){
+          var answer = "Hallo zurück!";
+          sendanswer(answer);
+        }
+        else if(message.toUpperCase().includes('WITZ')){
+          var answer = "Witz wird geschrieben....";
+          sendanswer(answer);
+          var answer = "Ich habe mit der Pflanze ausgemacht, sie nur noch einmal im Monat zu gießen. Sie ist darauf eingegangen.";
+          sendanswer(answer);
+        }
+        else if(message.toUpperCase().includes('GEHT ES DIR')){
+          var answer = "Mir geht es gut, danke der Nachfrage.";
+          sendanswer(answer);
+        }
+        else if(message.toUpperCase().includes('HEISST DU')){
+          var answer = "Ich heise Tap.";
+          sendanswer(answer);
+        }
+        else if(message.toUpperCase().includes('DEINE LIEBLINGSFARBE')){
+          var answer = "Hmm, meine Lieblingsfarbe ist grün.";
+          sendanswer(answer);
+        }
+        else if(message.toUpperCase().includes('SPÄT IST ES')){
+          var answer = "Unten im Eck dieser Textblase siehst du die Uhrzeit.";
+          sendanswer(answer);
+        }
+        else if(message.toUpperCase().includes('GROSS') && message.toUpperCase().includes('ERDE')){
+          var answer = "Die Erde ist 510’100’000 km² gross.";
+          sendanswer(answer);
+        }
+        else if(message.toUpperCase().includes('EINWOHNER') && message.toUpperCase().includes('SCHWEIZ')){
+          var answer = "Die Schweiz hat 8.6 Milionen Einwohner. Quelle: wikipedia";
+          sendanswer(answer);
+        }
+        else if(message.toUpperCase().includes('KANNST DU')){
+          var answer = "Zurzeit kann ich noch nicht besonders viel. Es wird aber immer mehr. Zurzeit kann ich dir bereits einen Witz erzählen oder etwas über mich.";
+          sendanswer(answer);
+        }
+        else{
+          var answer = "Tut mir leid, das weiss ich noch nicht. Ich lerne noch, frage mich das doch ein andermal erneut. 😅";
+          sendanswer(answer);
+        }
+      }
+
+      // send message
+      function sendmessage(){
+        if($("#chat-input").val() != ""){
+          $('#error-empty').css('display', 'none');
+          var message = $("#chat-input").val();
+          var usermessagebubbel = $("<div class='user-message'></div>");
+          //time
+          var gettime = new Date();
+					var h = gettime.getHours();
+					var min = gettime.getMinutes();
+					var time = h + ':' + min;
+          var messagedate = $("<h5 class='user-date'>15:26, 04.10.2020</h5>").text(time);
+          var messagetext = $("<p>test</p>").text($("#chat-input").val());
+          var read = $("<h5 class='user-read'><i class='far fa-check-circle'></i><i class='fas fa-check-circle'></i></h5>");
+          usermessagebubbel.append(messagetext, messagedate, read);
+          $("#chat").append(usermessagebubbel);
+          $("#chat-input").val("");
+          $('html, body').animate({scrollDown:0}, '1000');
+          $('#writing').css('display', 'block');
+          getanswer(message);
+        }
+        else{
+          $('#error-empty').css('display', 'block');
+        }
+      }
+
+      $("#chat-input").on("keyup", function(e){
+        if(e.keyCode == 13){
+          sendmessage();
+
+        }
+      });
+
+      $("#send-btn").click(function(){
+        sendmessage();
+      });
+      </script>
+</body>
+</html>
