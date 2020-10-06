@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-         <title>Chatbot</title>
-         <meta name="apple-mobile-web-app-title" content="Chatbot">
+         <title>Assistent Tap</title>
+         <meta name="apple-mobile-web-app-title" content="Assistent Tap">
          <link rel="icon" type="image/png" href="logo.png">
          <link rel="shortcut icon" type="image/png" href="logo.png">
          <link rel="apple-touch-icon" href="logo.png" sizes="any">
@@ -108,6 +108,18 @@
           var answer = "Zurzeit kann ich noch nicht besonders viel. Es wird aber immer mehr. Zurzeit kann ich dir bereits einen Witz erzählen oder etwas über mich.";
           sendanswer(answer);
         }
+        else if(message.toUpperCase().includes('ICH') && message.toUpperCase().includes('GEBURTSTAG')){
+          var answer = "Happy Birthday 🎁🎉";
+          sendanswer(answer);
+        }
+        else if(message.toUpperCase().includes('DU HUNGER')){
+          var answer = "Nein, ich habe schon etwas gegessen.";
+          sendanswer(answer);
+        }
+        else if(message.toUpperCase().includes('FEEDBACK')){
+          var answer = "Gerne kannst du mir ein Feedback geben. https://forms.gle/fkmXZpzzS7wssVHm6";
+          sendanswer(answer);
+        }
         else{
           var answer = "Tut mir leid, das weiss ich noch nicht. Ich lerne noch, frage mich das doch ein andermal erneut. 😅";
           sendanswer(answer);
@@ -131,7 +143,7 @@
           usermessagebubbel.append(messagetext, messagedate, read);
           $("#chat").append(usermessagebubbel);
           $("#chat-input").val("");
-          $('html, body').animate({scrollDown:0}, '1000');
+          $("html, body").animate({ scrollTop: $(document).height() }, 1000);
           $('#writing').css('display', 'block');
           getanswer(message);
         }
