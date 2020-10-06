@@ -77,8 +77,29 @@
         else if(message.toUpperCase().includes('WITZ')){
           var answer = "Witz wird geschrieben....";
           sendanswer(answer);
-          var answer = "Ich habe mit der Pflanze ausgemacht, sie nur noch einmal im Monat zu gießen. Sie ist darauf eingegangen.";
-          sendanswer(answer);
+          var min = 1;
+          var max = 5;
+          var witz = Math.round(Math.random() * (max - min)) + min;
+          if(witz == 1){
+            var answer = "Ich habe mit der Pflanze ausgemacht, sie nur noch einmal im Monat zu gießen. Sie ist darauf eingegangen.";
+            sendanswer(answer);
+          }
+          else if(witz == 2){
+            var answer = "Ich habe einen Joghurt fallen gelassen. Er war nicht mehr haltbar.";
+            sendanswer(answer);
+          }
+          else if(witz == 3){
+            var answer = "Ich esse nicht jede Sorte Chips. Ich bin da sehr pringelig.";
+            sendanswer(answer);
+          }
+          else if(witz == 4){
+            var answer = "Hab mich vorhin ausgesperrt. War ganz aus dem Häuschen.";
+            sendanswer(answer);
+          }
+          else if(witz == 5){
+            var answer = "Was machen zwei wütende Schafe? Sie kriegen sich in die Wolle.";
+            sendanswer(answer);
+          }
         }
         else if(message.toUpperCase().includes('GEHT ES DIR')){
           var answer = "Mir geht es gut, danke der Nachfrage.";
