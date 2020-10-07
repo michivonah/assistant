@@ -144,6 +144,15 @@ body{
    margin:  10px;
    }
 
+   .received-message iframe{
+   width: 95%;
+   height: 280px;
+   margin: auto;
+   margin-left: 2.5%;
+   border: none;
+   border-radius: 8px;
+   }
+
    .received-date{
    float: right;
    margin: 10px;
