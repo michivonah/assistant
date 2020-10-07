@@ -31,7 +31,7 @@
         <div id="chat">
           <div class="received-message">
             <p>Hallo, mein Name ist Tap. Wie kann ich dir helfen?</p>
-            <h5 class="received-date">Heute</h5>
+            <h5 class="received-date">Assistent by Michi</h5>
           </div>
           <div id="writing">
             <div class="dot"></div>
@@ -52,6 +52,8 @@
       // Loading
       $(window).on("load", function(){
         $("#loading-screen").fadeOut(750);
+        //var answer = "Hallo, mein Name ist Tap. Ich bin dein Assistent. Wie kann ich dir helfen?";
+        //sendanswer(answer);
       });
 
       // send answer
@@ -63,7 +65,15 @@
         var time = h + ':' + min;
         var remessagedate = $("<h5 class='received-date'>15:26, 04.10.2020</h5>").text(time);
         var remessagetext = $("<p>text</p>").text(answer);
-        remessagebubbel.append(remessagetext, remessagedate);
+        // if weather then add iframe
+        if(answer.toUpperCase().includes('WETTER')){
+          var iframelink = "https://api.wetteronline.de/wetterwidget?gid=06650&modeid=FC1&seourl=luzern&locationname=Luzern&lang=de";
+          var remessageiframe = $("<iframe scrolling='none' name='FC1'>Inhalt kann nicht angezeigt werden.</iframe>").attr("src", iframelink);
+          remessagebubbel.append(remessagetext, remessageiframe, remessagedate);
+        }
+        else{
+          remessagebubbel.append(remessagetext, remessagedate);
+        }
         $('#writing').css('display', 'none');
         $("#chat").append(remessagebubbel);
       }
@@ -138,8 +148,9 @@
           sendanswer(answer);
         }
         else if(message.toUpperCase().includes('FEEDBACK') || message.toUpperCase().includes('RÜCKMELDUNG') || message.toUpperCase().includes('BEWERTUNG')){
-          var answer = "Gerne kannst du mir ein Feedback geben. https://forms.gle/fkmXZpzzS7wssVHm6";
+          var answer = "Gerne kannst du mir ein Feedback geben. Das Formular wird geöffnet.";
           sendanswer(answer);
+          window.open('https://forms.gle/fkmXZpzzS7wssVHm6');
         }
         else if(message.toUpperCase().includes('WASSER') && message.toUpperCase().includes('TAG')){
           var answer = "An einem Tag solltest du ungefähr 2 Liter Wasser trinken.";
@@ -154,8 +165,21 @@
           sendanswer(answer);
         }
         else if(message.toUpperCase().includes('FUNFACT')){
-          var answer = "Skorpione können bis zu einem Jahr ohne Nahrung überleben.";
-          sendanswer(answer);
+          var minfact = 1;
+          var maxfact = 3;
+          var funfact = Math.round(Math.random() * (maxfact - minfact)) + minfact;
+          if(funfact == 1){
+            var answer = "Skorpione können bis zu einem Jahr ohne Nahrung überleben.";
+            sendanswer(answer);
+          }
+          else if(funfact == 2){
+            var answer = "Mit einer durchschnittlichen Bleistiftmine kann man eine 56km lange Linie zeichnen.";
+            sendanswer(answer);
+          }
+          else if(funfact == 3){
+            var answer = "Unsere Nasen und Ohren hören nie auf zu wachsen.";
+            sendanswer(answer);
+          }
         }
         else if(message.toUpperCase().includes('HAST DU BROT')){
           var answer = "Nein und ich habe auch keine Nägel.";
@@ -165,6 +189,21 @@
           var answer = "Wird gemacht....";
           sendanswer(answer);
           window.open('https://open.spotify.com/playlist/37i9dQZEVXbJiyhoAPEfMK?si=2fX4Gxt8TVCseW9yyJ6bdQ');
+        }
+        else if(message.toUpperCase().includes('ÖFFNE') && message.toUpperCase().includes('YOUTUBE')){
+          var answer = "Wird gemacht....";
+          sendanswer(answer);
+          window.open('https://www.youtube.com/');
+        }
+        else if(message.toUpperCase().includes('ÖFFNE') && message.toUpperCase().includes('INSTAGRAM')){
+          var answer = "Wird gemacht....";
+          sendanswer(answer);
+          window.open('https://www.instagram.com/');
+        }
+        else if(message.toUpperCase().includes('ÖFFNE') && message.toUpperCase().includes('TWITTER')){
+          var answer = "Wird gemacht....";
+          sendanswer(answer);
+          window.open('https://twitter.com/home');
         }
         else if(message.toUpperCase().includes('#INFO')){
           var answer = "Befehl noch nicht verfügbar.";
@@ -191,6 +230,18 @@
           var answer = "Mark Zuckerberg ist der Gründer von Facebook. Ihm gehören zudem die Apps WhatsApp und Instagram. Er ist 36 Jahre alt.";
           sendanswer(answer);
         }
+        else if(message.toUpperCase().includes('WER') && message.toUpperCase().includes('PRÄSIDENT')){
+          var answer = "Donald Trump ist der Präsident von Amerika.";
+          sendanswer(answer);
+        }
+        else if(message.toUpperCase().includes('WER') && message.toUpperCase().includes('JEFF BEZOS')){
+          var answer = "Jeff Bezos ist der Gründer und CEO von Amazon. Er gilt als reichste Person der Welt. Er ist 56 Jahre alt. Quelle: wikipedia";
+          sendanswer(answer);
+        }
+        else if(message.toUpperCase().includes('WER') && message.toUpperCase().includes('BILL GATES')){
+          var answer = "Bill Gates ist einer der Gründer von Microsoft. Er gilt als eine der reichsten Personen der Welt. Er ist 65 Jahre alt. Quelle: wikipedia";
+          sendanswer(answer);
+        }
         else if(message.toUpperCase().includes('JA')){
           var answer = "Super";
           sendanswer(answer);
@@ -202,6 +253,27 @@
         else if(message.toUpperCase().includes('AUF WIEDERSEHEN') || message.toUpperCase().includes('TSCHAU') || message.toUpperCase().includes('BYE') || message.toUpperCase().includes('TSCHÜSS')){
           var answer = "Bis nächstes Mal.";
           sendanswer(answer);
+        }
+        else if(message.toUpperCase().includes('WETTER')){
+          var answer = "Das Wetter ist zurzeit nur für Luzern verfügbar.";
+          sendanswer(answer);
+        }
+        else if(message.toUpperCase().includes('WAS') && message.toUpperCase().includes('ESSEN')){
+          var answer = "Wie wärs mit Pizza? 🍕";
+          sendanswer(answer);
+        }
+        else if(message.toUpperCase().includes('DU') && message.toUpperCase().includes('DURST')){
+          var answer = "Nein, ich mag kein Wasser. Den Technik und Wasser ist bekantlich keine gute Kombination. ⚡";
+          sendanswer(answer);
+        }
+        else if(message.toUpperCase().includes('#DARKMODE')){
+          var answer = "Der Darkmode wird aktiviert.";
+          sendanswer(answer);
+          $('body').css('background', '#181818');
+          $('i').css('color', '#181818');
+          $('input').css('color', '#181818');
+          $('::placeholder').css('color', 'rgba(0, 0, 0, 0.5)');
+          $('.error').css('color', 'rgba(255, 255, 255, 0.25)');
         }
         else{
           var answer = "Tut mir leid, das weiss ich noch nicht. Ich lerne noch, frage mich das doch ein andermal erneut. 😅";
