@@ -86,11 +86,11 @@
           var answer = "Schön dich zu sehen!";
           sendanswer(answer);
         }
-        else if(message.toUpperCase().includes('WITZ')){
+        else if(message.toUpperCase().includes('WITZ') || message.toUpperCase().includes('ETWAS LUSTIGES') || message.toUpperCase().includes('FLACHWITZ') || message.toUpperCase().includes('SCHERZ')){
           //var answer = "Witz wird geschrieben....";
           //sendanswer(answer);
           var min = 1;
-          var max = 7;
+          var max = 11;
           var witz = Math.round(Math.random() * (max - min)) + min;
           if(witz == 1){
             var answer = "Ich habe mit der Pflanze ausgemacht, sie nur noch einmal im Monat zu gießen. Sie ist darauf eingegangen.";
@@ -124,6 +124,26 @@
             var answer = "Was ist eine Glühbirne wenn sie auf den Boden fällt?";
             sendanswer(answer);
             var answer = "Fassungslos";
+            sendanswer(answer);
+          }
+          else if(witz == 8){
+            var answer = "Was sind die teuresten Tomaten?";
+            sendanswer(answer);
+            var answer = "Geldautomaten";
+            sendanswer(answer);
+          }
+          else if(witz == 9){
+            var answer = "Ich wollte Spiderman anrufen, er hatte aber kein Netz.";
+            sendanswer(answer);
+          }
+          else if(witz == 10){
+            var answer = "Hab mir neulich ein Dach gekauft, ging aufs Haus.";
+            sendanswer(answer);
+          }
+          else if(witz == 11){
+            var answer = "Wie nennt man Minecraft Filme?";
+            sendanswer(answer);
+            var answer = "Blockbuster";
             sendanswer(answer);
           }
         }
@@ -204,7 +224,7 @@
         else if(message.toUpperCase().includes('ÖFFNE') && message.toUpperCase().includes('SPOTIFY')){
           var answer = "Wird gemacht....";
           sendanswer(answer);
-          window.open('https://open.spotify.com/playlist/37i9dQZEVXbJiyhoAPEfMK?si=2fX4Gxt8TVCseW9yyJ6bdQ');
+          window.open('https://open.spotify.com/');
         }
         else if(message.toUpperCase().includes('ÖFFNE') && message.toUpperCase().includes('YOUTUBE')){
           var answer = "Wird gemacht....";
