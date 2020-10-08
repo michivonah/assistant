@@ -10,3 +10,4 @@ Einige Funktionen:
 -Witze erzählen
 -Darkmode
 -einige ausgewählte Fragen beantworten
+-einige Apps &ouml;ffnen (YouTube, Spotify, etc.)
