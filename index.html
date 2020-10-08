@@ -41,9 +41,10 @@
         </div>
         <p id="error-empty" class="error">Ihre Nachricht ist leer.</p>
         <div id="user-chatfield">
-          <input id="chat-input" type="text" placeholder="Type here....">
+          <input id="chat-input" type="text" placeholder="Schreibe hier....">
           <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
         </div>
+        <div id="placeholder-chatfield"></div>
       </div>
 
 
@@ -65,6 +66,7 @@
         var time = h + ':' + min;
         var remessagedate = $("<h5 class='received-date'>15:26, 04.10.2020</h5>").text(time);
         var remessagetext = $("<p>text</p>").text(answer);
+        var placeholder = $("<div class='placeholder-chatfield'></div>");
         // if weather then add iframe
         if(answer.toUpperCase().includes('WETTER')){
           var iframelink = "https://api.wetteronline.de/wetterwidget?gid=06650&modeid=FC1&seourl=luzern&locationname=Luzern&lang=de";
@@ -85,10 +87,10 @@
           sendanswer(answer);
         }
         else if(message.toUpperCase().includes('WITZ')){
-          var answer = "Witz wird geschrieben....";
-          sendanswer(answer);
+          //var answer = "Witz wird geschrieben....";
+          //sendanswer(answer);
           var min = 1;
-          var max = 5;
+          var max = 7;
           var witz = Math.round(Math.random() * (max - min)) + min;
           if(witz == 1){
             var answer = "Ich habe mit der Pflanze ausgemacht, sie nur noch einmal im Monat zu gießen. Sie ist darauf eingegangen.";
@@ -107,7 +109,21 @@
             sendanswer(answer);
           }
           else if(witz == 5){
-            var answer = "Was machen zwei wütende Schafe? Sie kriegen sich in die Wolle.";
+            var answer = "Was machen zwei wütende Schafe?";
+            sendanswer(answer);
+            var answer = "Sie kriegen sich in die Wolle.";
+            sendanswer(answer);
+          }
+          else if(witz == 6){
+            var answer = "Was hat jemand der im Kreis läuft?";
+            sendanswer(answer);
+            var answer = "Kreislaufprobleme";
+            sendanswer(answer);
+          }
+          else if(witz == 7){
+            var answer = "Was ist eine Glühbirne wenn sie auf den Boden fällt?";
+            sendanswer(answer);
+            var answer = "Fassungslos";
             sendanswer(answer);
           }
         }
@@ -136,7 +152,7 @@
           sendanswer(answer);
         }
         else if(message.toUpperCase().includes('KANNST DU')){
-          var answer = "Zurzeit kann ich noch nicht besonders viel. Es wird aber immer mehr. Zurzeit kann ich dir bereits einen Witz erzählen oder etwas über mich.";
+          var answer = "Ich kann noch nicht viel, lerne aber jeden Tag neues. Zurzeit kann ich dir bereits einen Witz erzählen, einige Fragen beantworten oder dir etwas über mich erzählen.";
           sendanswer(answer);
         }
         else if(message.toUpperCase().includes('ICH') && message.toUpperCase().includes('GEBURTSTAG')){
@@ -266,6 +282,10 @@
           var answer = "Nein, ich mag kein Wasser. Den Technik und Wasser ist bekantlich keine gute Kombination. ⚡";
           sendanswer(answer);
         }
+        else if(message.toUpperCase().includes('ICH') && message.toUpperCase().includes('KEINE FREUNDE')){
+          var answer = "Das stimmt doch gar nicht, ich bin doch bei dir. ❤";
+          sendanswer(answer);
+        }
         else if(message.toUpperCase().includes('#DARKMODE')){
           var answer = "Der Darkmode wird aktiviert.";
           sendanswer(answer);
@@ -276,7 +296,7 @@
           $('.error').css('color', 'rgba(255, 255, 255, 0.25)');
         }
         else{
-          var answer = "Tut mir leid, das weiss ich noch nicht. Ich lerne noch, frage mich das doch ein andermal erneut. 😅";
+          var answer = "Tut mir leid, das weiss ich noch nicht. 😅";
           sendanswer(answer);
         }
       }
