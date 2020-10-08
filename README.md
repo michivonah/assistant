@@ -4,4 +4,4 @@ Der Assistent weiss noch nicht viel, er lernt aber bald mehr.
 <br><a href="https://michivonah.github.io/assistant/">Assistent starten</a>
 <br><a href="https://forms.gle/fkmXZpzzS7wssVHm6">Feedback geben</a>
 
-Letztes Update: 07.10.2020
+Letztes Update: heute
