@@ -7,7 +7,7 @@ Der Assistent weiss noch nicht viel, er lernt aber bald mehr.
 Letztes Update: heute
 
 Einige Funktionen:
--Witze erzählen
--Darkmode
--einige ausgewählte Fragen beantworten
--einige Apps &ouml;ffnen (YouTube, Spotify, etc.)
+- Witze erzählen
+- Darkmode
+- einige ausgewählte Fragen beantworten (zb. Wer ist Elon Musk?)
+- einige Apps &ouml;ffnen (YouTube, Spotify, etc.)
