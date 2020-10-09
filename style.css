@@ -63,6 +63,35 @@ body{
    height: calc(100vh - 76px);
    }
 
+   #context-menu{
+   width: 100%;
+   height: 56px;
+   background: #3498db;
+   position: fixed;
+   text-align: left;
+   font-size: 26px;
+   font-family: arial, sans-serif;
+   display: none;
+   }
+
+   #context-menu p{
+   float: left;
+   margin: 15px;
+   color: #fff;
+   }
+
+   #context-menu i{
+   float: right;
+   margin: 15px;
+   color: #fff;
+   }
+
+   #context-menu i:hover{
+   float: right;
+   margin: 15px;
+   color: #181818;
+   }
+
    #user-chatfield{
    width: 100%;
    height: 56px;
