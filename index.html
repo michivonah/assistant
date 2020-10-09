@@ -36,7 +36,7 @@
             <a href="https://www.instagram.com/michivonah/"><i class="fab fa-instagram" id="instagram"></i></a>
             <a href="https://github.com/michivonah/assistant"><i class="fab fa-github" id="github"></i></a>
             <i class="fas fa-share" id="share" style="display:none;"></i>
-            <i class="far fa-copy" id="copy" style="display:none;"></i>
+            <i class="far fa-copy" id="copy" style="display:block;"></i>
             <i class="far fa-trash-alt" id="trash"></i>
             <i class="far fa-star" id="fav" style="display:none;"></i>
           </div>
@@ -86,8 +86,9 @@
         var placeholder = $("<div class='placeholder-chatfield'></div>");
         // if weather then add iframe
         if(answer.toUpperCase().includes('WETTER')){
-          var iframelink = "https://api.wetteronline.de/wetterwidget?gid=06650&modeid=FC1&seourl=luzern&locationname=Luzern&lang=de";
-          var remessageiframe = $("<iframe scrolling='none' name='FC1'>Inhalt kann nicht angezeigt werden.</iframe>").attr("src", iframelink);
+          var weather = "Luzern";
+          var iframelink = "https://meteo.search.ch/widget/" + weather + "?days=1";
+          var remessageiframe = $("<iframe scrolling='none' style='border:0;width:95%;height:320px'>Inhalt kann nicht angezeigt werden.</iframe>").attr("src", iframelink);
           remessagebubbel.append(remessagetext, remessageiframe, remessagedate);
         }
         else{
@@ -102,7 +103,7 @@
       // all answers
       function getanswer(message){
         if(message.toUpperCase().includes('HI') || message.toUpperCase().includes('HALLO') || message.toUpperCase().includes('HELLO') || message.toUpperCase().includes('SALI') || message.toUpperCase().includes('GRÜEZI') || message.toUpperCase().includes('HOI') || message.toUpperCase().includes('HEY') || message.toUpperCase().includes('CIAO') || message.toUpperCase().includes('GUTEN TAG') || message.toUpperCase().includes('GUTEN ABEND') || message.toUpperCase().includes('GUTEN NACHMITTAG')){
-          var answer = "Schön dich zu sehen!";
+          var answer = "Schön dich zu sehen! 👋";
           sendanswer(answer);
         }
         else if(message.toUpperCase().includes('WITZ') || message.toUpperCase().includes('ETWAS LUSTIGES') || message.toUpperCase().includes('FLACHWITZ') || message.toUpperCase().includes('SCHERZ')){
@@ -179,11 +180,11 @@
           sendanswer(answer);
         }
         else if(message.toUpperCase().includes('SPÄT IST ES') || message.toUpperCase().includes('ZEIT')){
-          var answer = "Unten im Eck dieser Textblase siehst du die Uhrzeit.";
+          var answer = "Unten im Eck dieser Textblase siehst du die Uhrzeit. ⌚";
           sendanswer(answer);
         }
         else if(message.toUpperCase().includes('GROSS') && message.toUpperCase().includes('ERDE')){
-          var answer = "Die Erde ist 510’100’000 km² gross.";
+          var answer = "Die Erde ist 510’100’000 km² gross. 🗺";
           sendanswer(answer);
         }
         else if(message.toUpperCase().includes('EINWOHNER') && message.toUpperCase().includes('SCHWEIZ')){
@@ -191,7 +192,7 @@
           sendanswer(answer);
         }
         else if(message.toUpperCase().includes('KANNST DU')){
-          var answer = "Ich kann noch nicht viel, lerne aber jeden Tag neues. Zurzeit kann ich dir bereits einen Witz erzählen, einige Fragen beantworten oder dir etwas über mich erzählen.";
+          var answer = "Ich kann noch nicht viel, lerne aber jeden Tag neues. Zurzeit kann ich dir bereits einen Witz erzählen, einige Fragen beantworten oder dir etwas über mich erzählen. 😉";
           sendanswer(answer);
         }
         else if(message.toUpperCase().includes('ICH') && message.toUpperCase().includes('GEBURTSTAG')){
@@ -199,7 +200,7 @@
           sendanswer(answer);
         }
         else if(message.toUpperCase().includes('DU HUNGER')){
-          var answer = "Nein, ich habe schon etwas gegessen.";
+          var answer = "Nein, ich habe schon etwas gegessen. 🍔";
           sendanswer(answer);
         }
         else if(message.toUpperCase().includes('FEEDBACK') || message.toUpperCase().includes('RÜCKMELDUNG') || message.toUpperCase().includes('BEWERTUNG')){
@@ -208,11 +209,11 @@
           window.open('https://forms.gle/fkmXZpzzS7wssVHm6');
         }
         else if(message.toUpperCase().includes('WASSER') && message.toUpperCase().includes('TAG')){
-          var answer = "An einem Tag solltest du ungefähr 2 Liter Wasser trinken.";
+          var answer = "An einem Tag solltest du ungefähr 2 Liter Wasser trinken. 🧃";
           sendanswer(answer);
         }
         else if(message.toUpperCase().includes('ZUCKER') && message.toUpperCase().includes('TAG')){
-          var answer = "Pro Tag solltest du nicht mehr als 50g Zucker zu dir nehmen.";
+          var answer = "Pro Tag solltest du nicht mehr als 50g Zucker zu dir nehmen. 🍫";
           sendanswer(answer);
         }
         else if(message.toUpperCase().includes('SPRACHEN') && message.toUpperCase().includes('DU')){
@@ -237,7 +238,7 @@
           }
         }
         else if(message.toUpperCase().includes('HAST DU BROT')){
-          var answer = "Nein und ich habe auch keine Nägel.";
+          var answer = "Nein und ich habe auch keine Nägel. 😉";
           sendanswer(answer);
         }
         else if(message.toUpperCase().includes('ÖFFNE') && message.toUpperCase().includes('SPOTIFY')){
@@ -261,24 +262,24 @@
           window.open('https://twitter.com/home');
         }
         else if(message.toUpperCase().includes('#INFO')){
-          var answer = "Befehl noch nicht verfügbar.";
+          var answer = "Befehl noch nicht verfügbar. 😊";
           //var answer = "Letztes Update: 09.10.2020";
           sendanswer(answer);
         }
         else if(message.toUpperCase().includes('WANN') && message.toUpperCase().includes('HALLOWEEN')){
-          var answer = "Halloween ist dieses Jahr am 31. Oktober.";
+          var answer = "Halloween ist dieses Jahr am 31. Oktober. 🎃";
           sendanswer(answer);
         }
         else if(message.toUpperCase().includes('WANN') && message.toUpperCase().includes('WEIHNACHTEN')){
-          var answer = "Weihnachten ist am 25. Dezember.";
+          var answer = "Weihnachten ist am 25. Dezember. 🎄";
           sendanswer(answer);
         }
         else if(message.toUpperCase().includes('ENTWICKLER')){
-          var answer = "Ich wurde von Michi von Ah programmiert. Er heisst auf Instagram @michivonah";
+          var answer = "Ich wurde von Michi von Ah programmiert. 💻 Er heisst auf Instagram @michivonah";
           sendanswer(answer);
         }
         else if(message.toUpperCase().includes('WER') && message.toUpperCase().includes('ELON MUSK')){
-          var answer = "Elon Musk ist der Gründer und CEO von Tesla. Er ist 49 Jahre alt.";
+          var answer = "Elon Musk ist der Gründer und CEO von Tesla. ⚡ Er ist 49 Jahre alt.";
           sendanswer(answer);
         }
         else if(message.toUpperCase().includes('WER') && message.toUpperCase().includes('MARK ZUCKERBERG')){
@@ -305,20 +306,24 @@
           var answer = "Du bist zwischen 0 und 122 Jahre alt. 😉";
           sendanswer(answer);
         }
-        else if(message.toUpperCase().includes('JA')){
-          var answer = "Super";
+        else if(message.toUpperCase().includes('JA') || message.toUpperCase().includes('👍')){
+          var answer = "Ok";
           sendanswer(answer);
         }
-        else if(message.toUpperCase().includes('NEIN')){
+        else if(message.toUpperCase().includes('NEIN') || message.toUpperCase().includes('👎')){
           var answer = "Schade";
+          sendanswer(answer);
+        }
+        else if(message.toUpperCase().includes('GUT')){
+          var answer = "Toll 😀";
           sendanswer(answer);
         }
         else if(message.toUpperCase().includes('AUF WIEDERSEHEN') || message.toUpperCase().includes('TSCHAU') || message.toUpperCase().includes('BYE') || message.toUpperCase().includes('TSCHÜSS')){
           var answer = "Bis nächstes Mal.";
           sendanswer(answer);
         }
-        else if(message.toUpperCase().includes('WETTER')){
-          var answer = "Das Wetter ist zurzeit nur für Luzern verfügbar.";
+        else if(message.toUpperCase().includes('WETTER') || message.toUpperCase().includes('⛅')){
+          var answer = "Das Wetter heute:";
           sendanswer(answer);
         }
         else if(message.toUpperCase().includes('WAS') && message.toUpperCase().includes('ESSEN')){
@@ -333,7 +338,7 @@
           var answer = "Das stimmt doch gar nicht, ich bin doch bei dir. ❤";
           sendanswer(answer);
         }
-        else if(message.toUpperCase().includes('#DARKMODE')){
+        else if(message.toUpperCase().includes('DARKMODE')){
           var answer = "Der Darkmode wird aktiviert.";
           sendanswer(answer);
           $('body').css('background', '#181818');
@@ -366,9 +371,19 @@
           var usermessagebubbel = $("<div class='user-message'></div>").click(function(){
             $("#context-menu").toggle( 'fast', function(){
            });
+           // delete
            $("#trash").click(function(){
              usermessagebubbel.remove();
              $('#context-menu').css('display', 'none');
+           });
+           // copy
+           $("#copy").click(function(){
+             var copytext = "Fehler beim kopieren.";
+             var $temp = $("<input>");
+             $("body").append($temp);
+             $temp.val(copytext).select();
+             document.execCommand("copy");
+             $temp.remove();
            });
           });;
           //time
@@ -394,17 +409,11 @@
       $("#chat-input").on("keyup", function(e){
         if(e.keyCode == 13){
           sendmessage();
-
         }
       });
 
       $("#send-btn").click(function(){
         sendmessage();
-      });
-
-      // context menu
-      $("#trash").click(function(){
-        //sendmessage();
       });
       </script>
 </body>
