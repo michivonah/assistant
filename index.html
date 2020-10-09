@@ -28,7 +28,18 @@
           </div>
 
       <div id="content">
+        <audio id="newmessagesound" src="new-message.mp3"></audio>
         <div id="chat">
+          <div id="context-menu">
+            <p>BETA</p>
+            <i class="fas fa-ellipsis-v"></i>
+            <a href="https://www.instagram.com/michivonah/"><i class="fab fa-instagram" id="instagram"></i></a>
+            <a href="https://github.com/michivonah/assistant"><i class="fab fa-github" id="github"></i></a>
+            <i class="fas fa-share" id="share" style="display:none;"></i>
+            <i class="far fa-copy" id="copy" style="display:none;"></i>
+            <i class="far fa-trash-alt" id="trash"></i>
+            <i class="far fa-star" id="fav" style="display:none;"></i>
+          </div>
           <div class="received-message">
             <p>Hallo, mein Name ist Tap. Wie kann ich dir helfen?</p>
             <h5 class="received-date">Assistent by Michi</h5>
@@ -58,7 +69,14 @@
 
       // send answer
       function sendanswer(answer){
-        var remessagebubbel = $("<div class='received-message'></div>");
+        var remessagebubbel = $("<div class='received-message'></div>").click(function(){
+         $("#context-menu").toggle( 'fast', function(){
+         });
+         $("#trash").click(function(){
+           remessagebubbel.remove();
+           $('#context-menu').css('display', 'none');
+         });
+        });
         var gettime = new Date();
         var h = gettime.getHours();
         var min = gettime.getMinutes();
@@ -78,6 +96,7 @@
         $('#writing').css('display', 'none');
         $('.received-message').css('margin-bottom', '10px');
         $("#chat").append(remessagebubbel);
+        $('#newmessagesound')[0].play();
       }
 
       // all answers
@@ -344,7 +363,14 @@
         if($("#chat-input").val() != ""){
           $('#error-empty').css('display', 'none');
           var message = $("#chat-input").val();
-          var usermessagebubbel = $("<div class='user-message'></div>");
+          var usermessagebubbel = $("<div class='user-message'></div>").click(function(){
+            $("#context-menu").toggle( 'fast', function(){
+           });
+           $("#trash").click(function(){
+             usermessagebubbel.remove();
+             $('#context-menu').css('display', 'none');
+           });
+          });;
           //time
           var gettime = new Date();
 					var h = gettime.getHours();
@@ -374,6 +400,11 @@
 
       $("#send-btn").click(function(){
         sendmessage();
+      });
+
+      // context menu
+      $("#trash").click(function(){
+        //sendmessage();
       });
       </script>
 </body>
