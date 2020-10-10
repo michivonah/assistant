@@ -24,7 +24,7 @@
 
           <!-- Loadingscreen -->
           <div id="loading-screen">
-              <div id="loading"></div>
+              <div id="loading"><img src="logo.png"></div>
           </div>
 
       <div id="content">
@@ -39,10 +39,6 @@
             <i class="far fa-copy" id="copy" style="display:block;"></i>
             <i class="far fa-trash-alt" id="trash"></i>
             <i class="far fa-star" id="fav" style="display:none;"></i>
-          </div>
-          <div class="received-message">
-            <p>Hallo, mein Name ist Tap. Wie kann ich dir helfen?</p>
-            <h5 class="received-date">Assistent by Michi</h5>
           </div>
           <div id="writing">
             <div class="dot"></div>
@@ -63,8 +59,8 @@
       // Loading
       $(window).on("load", function(){
         $("#loading-screen").fadeOut(750);
-        //var answer = "Hallo, mein Name ist Tap. Ich bin dein Assistent. Wie kann ich dir helfen?";
-        //sendanswer(answer);
+        var answer = "Hallo, mein Name ist Tap. Wie kann ich dir helfen?";
+        sendanswer(answer);
       });
 
       // send answer
@@ -90,6 +86,10 @@
           var iframelink = "https://meteo.search.ch/widget/" + weather + "?days=1";
           var remessageiframe = $("<iframe scrolling='none' style='border:0;width:95%;height:320px'>Inhalt kann nicht angezeigt werden.</iframe>").attr("src", iframelink);
           remessagebubbel.append(remessagetext, remessageiframe, remessagedate);
+        }
+        else if(answer.toUpperCase().includes('HALLO, MEIN NAME IST TAP. WIE KANN ICH DIR HELFEN?')){
+          var remessagedate = $("<h5 class='received-date'>Assistent by Michi</h5>");
+          remessagebubbel.append(remessagetext, remessagedate);
         }
         else{
           remessagebubbel.append(remessagetext, remessagedate);
@@ -316,6 +316,10 @@
         }
         else if(message.toUpperCase().includes('GUT')){
           var answer = "Toll 😀";
+          sendanswer(answer);
+        }
+        else if(message.toUpperCase().includes('DANKE')){
+          var answer = "Kein Problem 😊";
           sendanswer(answer);
         }
         else if(message.toUpperCase().includes('AUF WIEDERSEHEN') || message.toUpperCase().includes('TSCHAU') || message.toUpperCase().includes('BYE') || message.toUpperCase().includes('TSCHÜSS')){
