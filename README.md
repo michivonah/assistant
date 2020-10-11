@@ -6,7 +6,7 @@ Der Assistent weiss noch nicht viel, er lernt aber bald mehr. Ich bin über jede
 
 Letztes Update: heute
 
-Einige Funktionen:
+### Einige Funktionen:
 - Witze erzählen
 - Darkmode
 - einige ausgewählte Fragen beantworten (zb. Wer ist Elon Musk?)
@@ -14,5 +14,8 @@ Einige Funktionen:
 - Kontextmenu (Nachricht ausblenden, Einstellungen &ouml;ffnen)
 - Name speichern (dazu werden Cookies gesetzt)
 
-geplante Funktionen:
+### geplante Funktionen:
 - Spracheausgabe
+
+### Cookies:
+Es werden Cookies verwendet um die vom Nutzer angegebenen Daten (Name, Darkmode, gew&uuml;nschter Ort f&uuml;r Wetter) zu speichern. Falls das Wetter verwendet wird, kann es sein dass das Wetterwidget Cookies setzt. Mehr dazu (Wetterwidget) erfahren sie in der Datenschutzerklärung von <a href="https://www.search.ch/privacy">search</a>.
