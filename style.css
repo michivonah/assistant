@@ -192,6 +192,39 @@ body{
    margin: 10px;
    }
 
+   #settings{
+   width: 100%;
+   height: 95vh;
+   display: none;
+   background: #3498db;
+   top: 0;
+   position: absolute;
+   }
+
+   #settings button{
+   width: 90%;
+   height: auto;
+   font-size: 22px;
+   background: #3498db;
+   color: #fff;
+   border: 4px solid;
+   border-radius: 8px;
+   margin: 10px;
+   max-width: 480px;
+   }
+
+   #settings input{
+   width: 90%;
+   height: auto;
+   font-size: 22px;
+   background: #3498db;
+   color: #fff;
+   border: 4px solid;
+   border-radius: 8px;
+   margin: 10px;
+   max-width: 480px;
+   }
+
    .error{
    color: #000;
    bottom: 66px;
@@ -229,4 +262,3 @@ body{
    0%, 100%{ width: 25px; height: 25px; }
    50%{ width: 35px; height: 35px; }
    }
-
