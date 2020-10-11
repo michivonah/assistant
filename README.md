@@ -11,7 +11,8 @@ Einige Funktionen:
 - Darkmode
 - einige ausgewählte Fragen beantworten (zb. Wer ist Elon Musk?)
 - einige Apps &ouml;ffnen (YouTube, Spotify, etc.)
-- Kontextmenu (Nachricht ausblenden)
+- Kontextmenu (Nachricht ausblenden, Einstellungen &ouml;ffnen)
+- Name speichern (dazu werden Cookies gesetzt)
 
 geplante Funktionen:
 - Spracheausgabe
