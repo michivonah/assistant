@@ -82,6 +82,10 @@
           var answer = "Hallo, mein Name ist Tap. Wie kann ich dir helfen?";
           sendanswer(answer);
         }
+        // check darkmode
+        if(Cookies.get('darkmode') == "true"){
+          darkmode();
+        }
       });
 
       // send answer
@@ -373,12 +377,10 @@
         else if(message.toUpperCase().includes('DARKMODE')){
           var answer = "Der Darkmode wird aktiviert.";
           sendanswer(answer);
-          $('body').css('background', '#181818');
-          $('i').css('color', '#181818');
-          $('input').css('color', '#181818');
-          $('::placeholder').css('color', 'rgba(0, 0, 0, 0.5)');
-          $('.error').css('color', 'rgba(255, 255, 255, 0.25)');
-          $("meta[name=apple-mobile-web-app-status-bar-style]").attr("content", "#181818");
+          var answer = "Diese Funktion verwendet Cookies um zu speichern, dass sie den Darkmode aktiviert haben.";
+          sendanswer(answer);
+          darkmode();
+          Cookies.set('darkmode', 'true')
         }
         else if(message.toUpperCase().includes('TEST')){
           var answer = "Test erfolgreich. ✔";
@@ -469,6 +471,16 @@
         $("#context-menu").toggle( 'fast', function(){
         });
       });
+
+      // darkmode
+      function darkmode(){
+        $('body').css('background', '#181818');
+        $('i').css('color', '#181818');
+        $('input').css('color', '#181818');
+        $('::placeholder').css('color', 'rgba(0, 0, 0, 0.5)');
+        $('.error').css('color', 'rgba(255, 255, 255, 0.25)');
+        $("meta[name=apple-mobile-web-app-status-bar-style]").attr("content", "#181818");
+      }
       </script>
 </body>
 </html>
