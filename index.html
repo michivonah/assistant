@@ -11,12 +11,14 @@
          <link rel="stylesheet" type="text/css" href="style.css"/>
          <script language="javascript" type="text/javascript" src="script.js"></script>
          <meta charset="UTF-8">
-         <meta name="theme-color" content="#000000">
-         <meta name="apple-mobile-web-app-status-bar-style" content="#ffffff">
+         <meta name="theme-color" content="#43a047">
+         <meta name="mobile-web-app-status-bar-style" content="#E8F5E9">
+         <meta name="apple-mobile-web-app-status-bar-style" content="#E8F5E9">
          <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
          <meta name="mobile-web-app-capable" content="yes">
          <meta name="apple-mobile-web-app-capable" content="yes">
          <link rel="manifest" href="manifest.json">
+         <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
          <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 
 </head>
@@ -32,7 +34,7 @@
         <div id="chat">
           <div id="context-menu">
             <p>BETA</p>
-            <i class="fas fa-ellipsis-v"></i>
+            <i class="fas fa-ellipsis-v" id="more"></i>
             <a href="https://www.instagram.com/michivonah/"><i class="fab fa-instagram" id="instagram"></i></a>
             <a href="https://github.com/michivonah/assistant"><i class="fab fa-github" id="github"></i></a>
             <i class="fas fa-share" id="share" style="display:none;"></i>
@@ -45,6 +47,13 @@
             <div class="dot"></div>
             <div class="dot"></div>
           </div>
+        </div>
+        <div id="settings">
+          <h3>Einstellungen <i class="fas fa-cog"></i></h3>
+          <p>Name</p><input type="text" placeholder="Max Mustermann" id="name-settings">
+          <p>Ortschaft f&uuml;r Wetter</p><input type="number" placeholder="PLZ" id="plz-settings">
+          <br><button id="save-settings">Speichern</button>
+          <p>Wenn sie auf den Speichern Button klicken, werden ihre Angaben in einem Cookie &#127850; abgespeichert. Um die Einstellungen zu verlassen senden sie eine Nachricht mit dem Wort Einstellungen.</p>
         </div>
         <p id="error-empty" class="error">Ihre Nachricht ist leer.</p>
         <div id="user-chatfield">
@@ -59,12 +68,24 @@
       // Loading
       $(window).on("load", function(){
         $("#loading-screen").fadeOut(750);
-        var answer = "Hallo, mein Name ist Tap. Wie kann ich dir helfen?";
-        sendanswer(answer);
+        var name = ""; // default name
+        var location = 6003; // default location = 6003 lucerne
+        $("#name-settings").val(Cookies.get('name'));
+        $("#plz-settings").val("6003");
+        // check name
+        if($("#name-settings").val() !== ""){
+          var answer = "Willkommen zurück " + Cookies.get('name') + "!";
+          sendanswer(answer);
+          $("#plz-settings").val(Cookies.get('location'));
+        }
+        else{
+          var answer = "Hallo, mein Name ist Tap. Wie kann ich dir helfen?";
+          sendanswer(answer);
+        }
       });
 
       // send answer
-      function sendanswer(answer){
+      function sendanswer(answer, location){
         var remessagebubbel = $("<div class='received-message'></div>").click(function(){
          $("#context-menu").toggle( 'fast', function(){
          });
@@ -82,8 +103,7 @@
         var placeholder = $("<div class='placeholder-chatfield'></div>");
         // if weather then add iframe
         if(answer.toUpperCase().includes('WETTER')){
-          var weather = "Luzern";
-          var iframelink = "https://meteo.search.ch/widget/" + weather + "?days=1";
+          var iframelink = "https://meteo.search.ch/widget/" + location + "?days=1";
           var remessageiframe = $("<iframe scrolling='none' style='border:0;width:95%;height:320px'>Inhalt kann nicht angezeigt werden.</iframe>").attr("src", iframelink);
           remessagebubbel.append(remessagetext, remessageiframe, remessagedate);
         }
@@ -101,9 +121,9 @@
       }
 
       // all answers
-      function getanswer(message){
+      function getanswer(message, name, location){
         if(message.toUpperCase().includes('HI') || message.toUpperCase().includes('HALLO') || message.toUpperCase().includes('HELLO') || message.toUpperCase().includes('SALI') || message.toUpperCase().includes('GRÜEZI') || message.toUpperCase().includes('HOI') || message.toUpperCase().includes('HEY') || message.toUpperCase().includes('CIAO') || message.toUpperCase().includes('GUTEN TAG') || message.toUpperCase().includes('GUTEN ABEND') || message.toUpperCase().includes('GUTEN NACHMITTAG')){
-          var answer = "Schön dich zu sehen! 👋";
+          var answer = "Schön dich zu sehen " + name + "! 👋";
           sendanswer(answer);
         }
         else if(message.toUpperCase().includes('WITZ') || message.toUpperCase().includes('ETWAS LUSTIGES') || message.toUpperCase().includes('FLACHWITZ') || message.toUpperCase().includes('SCHERZ')){
@@ -263,8 +283,16 @@
         }
         else if(message.toUpperCase().includes('#INFO')){
           var answer = "Befehl noch nicht verfügbar. 😊";
-          //var answer = "Letztes Update: 09.10.2020";
+          //var answer = "Letztes Update: 11.10.2020";
           sendanswer(answer);
+        }
+        else if(message.toUpperCase().includes('EINSTELLUNGEN')){
+          var answer = "Einstellungen werden geöffnet.";
+          sendanswer(answer);
+          $("#chat").toggle( 'fast', function(){
+          });
+          $("#settings").toggle( 'fast', function(){
+          });
         }
         else if(message.toUpperCase().includes('WANN') && message.toUpperCase().includes('HALLOWEEN')){
           var answer = "Halloween ist dieses Jahr am 31. Oktober. 🎃";
@@ -323,12 +351,12 @@
           sendanswer(answer);
         }
         else if(message.toUpperCase().includes('AUF WIEDERSEHEN') || message.toUpperCase().includes('TSCHAU') || message.toUpperCase().includes('BYE') || message.toUpperCase().includes('TSCHÜSS')){
-          var answer = "Bis nächstes Mal.";
+          var answer = "Bis nächstes Mal " + name + ".";
           sendanswer(answer);
         }
         else if(message.toUpperCase().includes('WETTER') || message.toUpperCase().includes('⛅')){
-          var answer = "Das Wetter heute:";
-          sendanswer(answer);
+          var answer = "Das Wetter heute in " + location + ":";
+          sendanswer(answer, location);
         }
         else if(message.toUpperCase().includes('WAS') && message.toUpperCase().includes('ESSEN')){
           var answer = "Wie wärs mit Pizza? 🍕";
@@ -350,6 +378,7 @@
           $('input').css('color', '#181818');
           $('::placeholder').css('color', 'rgba(0, 0, 0, 0.5)');
           $('.error').css('color', 'rgba(255, 255, 255, 0.25)');
+          $("meta[name=apple-mobile-web-app-status-bar-style]").attr("content", "#181818");
         }
         else if(message.toUpperCase().includes('TEST')){
           var answer = "Test erfolgreich. ✔";
@@ -403,7 +432,7 @@
           $("#chat-input").val("");
           $("html, body").animate({ scrollTop: $(document).height() }, 1000);
           $('#writing').css('display', 'block');
-          getanswer(message);
+          getanswer(message, $("#name-settings").val(), $("#plz-settings").val());
         }
         else{
           $('#error-empty').css('display', 'block');
@@ -418,6 +447,27 @@
 
       $("#send-btn").click(function(){
         sendmessage();
+      });
+
+      // settings
+      $("#save-settings").click(function(){ // when save btn clicked
+        // set cookies
+        Cookies.set('name', $("#name-settings").val(), { expires: 86400 })
+        Cookies.set('location', $("#plz-settings").val(), { expires: 86400 })
+        // toggle settings
+        $("#settings").toggle( 'fast', function(){
+        });
+        $("#chat").toggle( 'fast', function(){
+        });
+      });
+
+      $("#more").click(function(){
+        $("#settings").toggle( 'fast', function(){
+        });
+        $("#chat").toggle( 'fast', function(){
+        });
+        $("#context-menu").toggle( 'fast', function(){
+        });
       });
       </script>
 </body>
