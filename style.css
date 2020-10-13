@@ -239,6 +239,16 @@ body{
    display: none;
    }
 
+   a{
+   color: #fff;
+   text-decoration: none;
+   }
+
+   a:hover{
+   color: #fff;
+   text-decoration: underline;
+   }
+
    ::placeholder{
    color: rgba(255, 255, 255, 0.5);
    }
