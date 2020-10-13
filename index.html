@@ -49,11 +49,14 @@
           </div>
         </div>
         <div id="settings">
-          <h3>Einstellungen <i class="fas fa-cog"></i></h3>
+          <h1>Einstellungen <i class="fas fa-cog"></i></h1>
           <p>Name</p><input type="text" placeholder="Max Mustermann" id="name-settings">
           <p>Ortschaft f&uuml;r Wetter</p><input type="number" placeholder="PLZ" id="plz-settings">
           <br><button id="save-settings">Speichern</button>
-          <p>Wenn sie auf den Speichern Button klicken, werden ihre Angaben in einem Cookie &#127850; abgespeichert. Um die Einstellungen zu verlassen senden sie eine Nachricht mit dem Wort Einstellungen.</p>
+          <br><button id="close-settings" style="display:none;">Einstellungen schliessen</button>
+          <p>Wenn sie auf den Speichern Button klicken, werden ihre Angaben in einem Cookie &#127850; abgespeichert.</p>
+          <h3>About</h3>
+          <a href="https://github.com/michivonah/assistant">Github <i class="fab fa-github"></i></a>
         </div>
         <p id="error-empty" class="error">Ihre Nachricht ist leer.</p>
         <div id="user-chatfield">
@@ -380,7 +383,7 @@
           var answer = "Diese Funktion verwendet Cookies um zu speichern, dass sie den Darkmode aktiviert haben.";
           sendanswer(answer);
           darkmode();
-          Cookies.set('darkmode', 'true')
+          Cookies.set('darkmode', 'true', { expires: 86400 })
         }
         else if(message.toUpperCase().includes('TEST')){
           var answer = "Test erfolgreich. ✔";
