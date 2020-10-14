@@ -38,7 +38,7 @@
             <a href="https://www.instagram.com/michivonah/"><i class="fab fa-instagram" id="instagram"></i></a>
             <a href="https://github.com/michivonah/assistant"><i class="fab fa-github" id="github"></i></a>
             <i class="fas fa-share" id="share" style="display:none;"></i>
-            <i class="far fa-copy" id="copy" style="display:block;"></i>
+            <i class="far fa-copy" id="copy"></i>
             <i class="far fa-trash-alt" id="trash"></i>
             <i class="far fa-star" id="fav" style="display:none;"></i>
           </div>
@@ -56,7 +56,13 @@
           <br><button id="close-settings" style="display:none;">Einstellungen schliessen</button>
           <p>Wenn sie auf den Speichern Button klicken, werden ihre Angaben in einem Cookie &#127850; abgespeichert.</p>
           <h3>About</h3>
-          <a href="https://github.com/michivonah/assistant">Github <i class="fab fa-github"></i></a>
+          <a href="https://github.com/michivonah/assistant">Github <i class="fab fa-github"></i></a><br>
+          <a href="https://forms.gle/fkmXZpzzS7wssVHm6">Feedback geben <i class="fas fa-comment-dots"></i></a><br>
+        </div>
+        <div id="favs">
+          <h1>Favoriten</h1>
+          <p>Hier sind deine gespeicherten Nachrichten aufgef&uuml;hrt. <i class="fas fa-star"></i></p>
+          <button id="close-favs">Schliessen</button>
         </div>
         <p id="error-empty" class="error">Ihre Nachricht ist leer.</p>
         <div id="user-chatfield">
@@ -87,7 +93,9 @@
         }
         // check darkmode
         if(Cookies.get('darkmode') == "true"){
-          darkmode();
+          darkmode("#181818"); // standard darkmode
+          //darkmode("#000"); // oled mode
+          //darkmode("#e74c3c"); // tomato
         }
       });
 
@@ -393,7 +401,7 @@
           sendanswer(answer);
           var answer = "Diese Funktion verwendet Cookies um zu speichern, dass sie den Darkmode aktiviert haben.";
           sendanswer(answer);
-          darkmode();
+          darkmode("#181818");
           Cookies.set('darkmode', 'true', { expires: 86400 })
         }
         else if(message.toUpperCase().includes('TEST')){
@@ -405,7 +413,7 @@
           sendanswer(answer);
         }
         else if(message.toUpperCase().includes('SMART') && message.toUpperCase().includes('HOME') || message.toUpperCase().includes('LICHT')){
-          var answer = "Smarthome ist noch nicht verfügbar. Kommt aber bald...";
+          var answer = "Smarthome Steuerung ist noch nicht verfügbar. Kommt aber bald...";
           sendanswer(answer);
         }
         else{
@@ -424,6 +432,7 @@
           var usermessagebubbel = $("<div class='user-message'></div>").click(function(){
             $("#context-menu").toggle( 'fast', function(){
            });
+           $('#fav').css('display', 'block');
            // delete
            $("#trash").click(function(){
              usermessagebubbel.remove();
@@ -438,6 +447,16 @@
              document.execCommand("copy");
              $temp.remove();
              $('#context-menu').css('display', 'none');
+           });
+           // favorite
+           $("#fav").click(function(){
+             var usermessagebubbel = $("<div class='user-message'></div>");
+             var messagetext = $("<p>test</p>").text(message);
+             usermessagebubbel.append(messagetext);
+             $("#favs").append(usermessagebubbel);
+             $('#context-menu').css('display', 'none');
+             $('#chat').css('display', 'none');
+             $('#favs').css('display', 'block');
            });
           });;
           //time
@@ -491,11 +510,19 @@
         });
       });
 
+      $("#close-favs").click(function(){
+        $("#favs").toggle( 'fast', function(){
+        });
+        $("#chat").toggle( 'fast', function(){
+        });
+      });
+
       // darkmode
-      function darkmode(){
-        $('body').css('background', '#181818');
-        $('i').css('color', '#181818');
-        $('input').css('color', '#181818');
+      function darkmode(color){
+        $('body').css('background', color);
+        $('#loading-screen').css('background', color);
+        $('i').css('color', color);
+        $('input').css('color', color);
         $('::placeholder').css('color', 'rgba(0, 0, 0, 0.5)');
         $('.error').css('color', 'rgba(255, 255, 255, 0.25)');
         $("meta[name=apple-mobile-web-app-status-bar-style]").attr("content", "#181818");
