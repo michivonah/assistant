@@ -96,8 +96,19 @@
         var remessagebubbel = $("<div class='received-message'></div>").click(function(){
          $("#context-menu").toggle( 'fast', function(){
          });
+         // trash
          $("#trash").click(function(){
            remessagebubbel.remove();
+           $('#context-menu').css('display', 'none');
+         });
+         // copy
+         $("#copy").click(function(){
+           var copytext = answer;
+           var $temp = $("<input>");
+           $("body").append($temp);
+           $temp.val(copytext).select();
+           document.execCommand("copy");
+           $temp.remove();
            $('#context-menu').css('display', 'none');
          });
         });
@@ -393,6 +404,10 @@
           var answer = "Eine Anleitung wie du dir selber einen Assistenten, wie mich, machen kannst kommt bald.";
           sendanswer(answer);
         }
+        else if(message.toUpperCase().includes('SMART') && message.toUpperCase().includes('HOME') || message.toUpperCase().includes('LICHT')){
+          var answer = "Smarthome ist noch nicht verfügbar. Kommt aber bald...";
+          sendanswer(answer);
+        }
         else{
           var answer = "Tut mir leid, das weiss ich noch nicht. 😅";
           sendanswer(answer);
@@ -416,12 +431,13 @@
            });
            // copy
            $("#copy").click(function(){
-             var copytext = "Fehler beim kopieren.";
+             var copytext = message;
              var $temp = $("<input>");
              $("body").append($temp);
              $temp.val(copytext).select();
              document.execCommand("copy");
              $temp.remove();
+             $('#context-menu').css('display', 'none');
            });
           });;
           //time
