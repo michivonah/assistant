@@ -268,7 +268,7 @@
         }
         else if(message.toUpperCase().includes('FUNFACT')){
           var minfact = 1;
-          var maxfact = 3;
+          var maxfact = 4;
           var funfact = Math.round(Math.random() * (maxfact - minfact)) + minfact;
           if(funfact == 1){
             var answer = "Skorpione können bis zu einem Jahr ohne Nahrung überleben.";
@@ -280,6 +280,18 @@
           }
           else if(funfact == 3){
             var answer = "Unsere Nasen und Ohren hören nie auf zu wachsen.";
+            sendanswer(answer);
+          }
+          else if(funfact == 4){
+            var answer = "Nebel heisst rückwärts geschrieben Leben.";
+            sendanswer(answer);
+          }
+          else if(funfact == 5){
+            var answer = "funfact";
+            sendanswer(answer);
+          }
+          else if(funfact == 6){
+            var answer = "funfact";
             sendanswer(answer);
           }
         }
@@ -413,7 +425,30 @@
           sendanswer(answer);
         }
         else if(message.toUpperCase().includes('SMART') && message.toUpperCase().includes('HOME') || message.toUpperCase().includes('LICHT')){
-          var answer = "Smarthome Steuerung ist noch nicht verfügbar. Kommt aber bald...";
+          var answer = "Smarthome Steuerung ist noch nicht verfügbar. Ich arbeite dran...";
+          sendanswer(answer);
+        }
+        else if(message.toUpperCase().includes('SMARTPHONE') && message.toUpperCase().includes('WELCHES')){
+          var minphone = 1;
+          var maxphone = 4;
+          var phone = Math.round(Math.random() * (maxphone - minphone)) + minphone;
+          if(phone == 1){
+            var answer = "Ich empfehle dir das neue iPhone 12. Es besitzt ein OLED Display und ist in verschiedenen Farben erhältlich.";
+            sendanswer(answer);
+          }
+          else if(phone == 2){
+            var answer = "Wie wärs mit dem OnePlus Nord? Ein tolles Smartphone für nur 400 CHF. Es hat einen grossen Akku und ein tolles Display.";
+            sendanswer(answer);
+          }
+          else if(phone == 3){
+            var answer = "Hmm, für 250 CHF empfehle ich dir das Samsung Galaxy A41.";
+            sendanswer(answer);
+          }
+          else if(phone == 4){
+            var answer = "Ich hätte dir jetzt das Google Pixel 4a empfohlen, aber es ist leider nicht in der Schweiz erhältlich.";
+            sendanswer(answer);
+          }
+          var answer = "Werbung wegen Markennenung, unbezahlt. #ad #werbung";
           sendanswer(answer);
         }
         else{
