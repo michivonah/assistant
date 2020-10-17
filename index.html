@@ -17,6 +17,7 @@
          <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
          <meta name="mobile-web-app-capable" content="yes">
          <meta name="apple-mobile-web-app-capable" content="yes">
+         <meta name="HandheldFriendly" content="true">
          <link rel="manifest" href="manifest.json">
          <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
          <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
@@ -225,8 +226,15 @@
           var answer = "Hmm, meine Lieblingsfarbe ist grün.";
           sendanswer(answer);
         }
-        else if(message.toUpperCase().includes('SPÄT IST ES') || message.toUpperCase().includes('ZEIT')){
-          var answer = "Unten im Eck dieser Textblase siehst du die Uhrzeit. ⌚";
+        else if(message.toUpperCase().includes('SPÄT IST ES') || message.toUpperCase().includes('ZEIT') || message.toUpperCase().includes('DATUM')){
+          var gettime = new Date();
+          var h = gettime.getHours();
+          var min = gettime.getMinutes();
+          var time = h + ':' + min;
+          var day = gettime.getDate();
+          var month = gettime.getMonth() + 1;
+          var year = gettime.getYear();
+          var answer = "Es ist " + time + " Uhr. ⌚ Heute haben wir den " + day + "." + month + ". 📅";
           sendanswer(answer);
         }
         else if(message.toUpperCase().includes('GROSS') && message.toUpperCase().includes('ERDE')){
@@ -451,6 +459,29 @@
           var answer = "Werbung wegen Markennenung, unbezahlt. #ad #werbung";
           sendanswer(answer);
         }
+        else if(message.toUpperCase().includes('LAPTOP') && message.toUpperCase().includes('WELCHER')){
+          var minphone = 1;
+          var maxphone = 1;
+          var phone = Math.round(Math.random() * (maxphone - minphone)) + minphone;
+          if(phone == 1){
+            var answer = "";
+            sendanswer(answer);
+          }
+          else if(phone == 2){
+            var answer = "";
+            sendanswer(answer);
+          }
+          else if(phone == 0){
+            var answer = "error #laptop";
+            sendanswer(answer);
+          }
+          var answer = "Werbung wegen Markennenung, unbezahlt. #ad #werbung";
+          sendanswer(answer);
+        }
+        else if(message.toUpperCase().includes('REZEPT')){
+          var answer = "Ich kann leider noch keine Kochrezepte anzeigen. 🍪";
+          sendanswer(answer);
+        }
         else{
           var answer = "Tut mir leid, das weiss ich noch nicht. 😅";
           sendanswer(answer);
@@ -562,6 +593,37 @@
         $('.error').css('color', 'rgba(255, 255, 255, 0.25)');
         $("meta[name=apple-mobile-web-app-status-bar-style]").attr("content", "#181818");
       }
+
+      /**/
+      // service worker
+      self.addEventListener('install', (e) => {
+        console.log('[Service Worker] Install');
+      });
+      var cacheName = 'assistant-tap-v1';
+      var appShellFiles = [
+        // all files to cache
+        'https://michivonah.github.io/assistant/',
+        'https://michivonah.github.io/assistant/index.html',
+        'https://michivonah.github.io/assistant/style.css',
+        'https://michivonah.github.io/assistant/new-message.mp3',
+        'https://michivonah.github.io/assistant/logo.png',
+        'https://michivonah.github.io/assistant/bg1.svg',
+        'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap',
+        'https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css',
+        'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js',
+        ];
+
+        self.addEventListener('install', (e) => {
+        console.log('[Service Worker] Install');
+        e.waitUntil(
+        caches.open(cacheName).then((cache) => {
+          console.log('[Service Worker] Caching all: app shell and content');
+          return cache.addAll(contentToCache);
+              })
+            );
+          });
+      /**/
       </script>
 </body>
 </html>
