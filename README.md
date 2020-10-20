@@ -4,7 +4,7 @@ Der Assistent weiss noch nicht viel, er lernt aber bald mehr. Ich bin über jede
 <br><a href="https://michivonah.github.io/assistant/">Assistent starten</a>
 <br><a href="https://forms.gle/fkmXZpzzS7wssVHm6">Feedback geben</a>
 
-Letztes Update: heute
+Letztes Update: ---
 
 ### Einige Funktionen:
 - Witze erzählen
