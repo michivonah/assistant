@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  
   // Loading
   $(window).on("load", function(){
     $("#loading-screen").fadeOut(750);
@@ -519,3 +520,4 @@ $(document).ready(function() {
   }
 
 });
+
