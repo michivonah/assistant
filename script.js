@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  
+
   // Loading
   $(window).on("load", function(){
     $("#loading-screen").fadeOut(750);
@@ -78,6 +78,22 @@ $(document).ready(function() {
       var answer = "Schön dich zu sehen " + name + "! 👋";
       sendanswer(answer);
     }
+    else if(message.toUpperCase().includes('JA') || message.toUpperCase().includes('👍')){
+      var answer = "Ok";
+      sendanswer(answer);
+    }
+    else if(message.toUpperCase().includes('NEIN') || message.toUpperCase().includes('👎')){
+      var answer = "Schade";
+      sendanswer(answer);
+    }
+    else if(message.toUpperCase().includes('GUT')){
+      var answer = "Toll 😀";
+      sendanswer(answer);
+    }
+    else if(message.toUpperCase().includes('DANKE')){
+      var answer = "Kein Problem 😊";
+      sendanswer(answer);
+    }
     else if(message.toUpperCase().includes('WITZ') || message.toUpperCase().includes('ETWAS LUSTIGES') || message.toUpperCase().includes('FLACHWITZ') || message.toUpperCase().includes('SCHERZ')){
       //var answer = "Witz wird geschrieben....";
       //sendanswer(answer);
@@ -113,15 +129,15 @@ $(document).ready(function() {
         sendanswer(answer);
       }
       else if(witz == 7){
-        var answer = "Was ist eine Glühbirne wenn sie auf den Boden fällt?";
+        var answer = "Was ist eine Glühbirne wenn sie auf den Boden fällt? 💡";
         sendanswer(answer);
         var answer = "Fassungslos";
         sendanswer(answer);
       }
       else if(witz == 8){
-        var answer = "Was sind die teuresten Tomaten?";
+        var answer = "Was sind die teuresten Tomaten? 🍅";
         sendanswer(answer);
-        var answer = "Geldautomaten";
+        var answer = "Geldautomaten 🤑";
         sendanswer(answer);
       }
       else if(witz == 9){
@@ -129,13 +145,43 @@ $(document).ready(function() {
         sendanswer(answer);
       }
       else if(witz == 10){
-        var answer = "Hab mir neulich ein Dach gekauft, ging aufs Haus.";
+        var answer = "Hab mir neulich ein Dach gekauft, ging aufs Haus. 🏠";
         sendanswer(answer);
       }
       else if(witz == 11){
         var answer = "Wie nennt man Minecraft Filme?";
         sendanswer(answer);
         var answer = "Blockbuster";
+        sendanswer(answer);
+      }
+      else if(witz == 12){
+        var answer = "Was macht ein Mathematiker beim Skifahren?";
+        sendanswer(answer);
+        var answer = "Er rechnet mit Brüchen. 😅";
+        sendanswer(answer);
+      }
+      else if(witz == 13){
+        var answer = "Warum können Geister schlecht lügen?";
+        sendanswer(answer);
+        var answer = "Weil sie leicht zu durchschauen sind.";
+        sendanswer(answer);
+      }
+      else if(witz == 14){
+        var answer = "Ich habe gestern ein Brötchen angerufen, aber es war belegt. 🍞";
+        sendanswer(answer);
+      }
+      else if(witz == 15){
+        var answer = "Egal wie tief du schläfst, Albert schläft wie Einstein.";
+        sendanswer(answer);
+      }
+      else if(witz == 16){
+        var answer = "Egal wie gut du fährst, Züge fahren Güter.";
+        sendanswer(answer);
+      }
+      else if(witz == 17){
+        var answer = "Was macht ein Mathematiker im Garten?";
+        sendanswer(answer);
+        var answer = "Wurzeln ziehen 🌱";
         sendanswer(answer);
       }
     }
@@ -197,6 +243,10 @@ $(document).ready(function() {
     }
     else if(message.toUpperCase().includes('SPRACHEN') && message.toUpperCase().includes('DU')){
       var answer = "Ich spreche zurzeit nur Deutsch und kann noch nicht übersetzen.";
+      sendanswer(answer);
+    }
+    else if(message.toUpperCase().includes('SPRECHEN') && message.toUpperCase().includes('DU')){
+      var answer = "Ich werde bald eine Stimme erhalten. Bis dahin kannst du mit mir schreiben. 😉";
       sendanswer(answer);
     }
     else if(message.toUpperCase().includes('FUNFACT')){
@@ -266,15 +316,23 @@ $(document).ready(function() {
       });
     }
     else if(message.toUpperCase().includes('WANN') && message.toUpperCase().includes('HALLOWEEN')){
-      var answer = "Halloween ist dieses Jahr am 31. Oktober. 🎃";
+      var answer = "Halloween ist nächstes Jahr am 31. Oktober. 🎃";
       sendanswer(answer);
     }
     else if(message.toUpperCase().includes('WANN') && message.toUpperCase().includes('WEIHNACHTEN')){
       var answer = "Weihnachten ist am 25. Dezember. 🎄";
       sendanswer(answer);
     }
+    else if(message.toUpperCase().includes('WANN') && message.toUpperCase().includes('HEILIGABEND')){
+      var answer = "Heiligabend ist am 24. Dezember. 🎄";
+      sendanswer(answer);
+    }
+    else if(message.toUpperCase().includes('WANN') && message.toUpperCase().includes('NIKOLAUS')){
+      var answer = "Nikolaus ist jedes Jahr am 6. Dezember. 🎅";
+      sendanswer(answer);
+    }
     else if(message.toUpperCase().includes('ENTWICKLER')){
-      var answer = "Ich wurde von Michi von Ah programmiert. 💻 Er heisst auf Instagram @michivonah";
+      var answer = "Ich wurde von Michi von Ah programmiert. 💻 Er heisst auf Instagram und Twitter @michivonah";
       sendanswer(answer);
     }
     else if(message.toUpperCase().includes('WER') && message.toUpperCase().includes('ELON MUSK')){
@@ -305,22 +363,6 @@ $(document).ready(function() {
       var answer = "Du bist zwischen 0 und 122 Jahre alt. 😉";
       sendanswer(answer);
     }
-    else if(message.toUpperCase().includes('JA') || message.toUpperCase().includes('👍')){
-      var answer = "Ok";
-      sendanswer(answer);
-    }
-    else if(message.toUpperCase().includes('NEIN') || message.toUpperCase().includes('👎')){
-      var answer = "Schade";
-      sendanswer(answer);
-    }
-    else if(message.toUpperCase().includes('GUT')){
-      var answer = "Toll 😀";
-      sendanswer(answer);
-    }
-    else if(message.toUpperCase().includes('DANKE')){
-      var answer = "Kein Problem 😊";
-      sendanswer(answer);
-    }
     else if(message.toUpperCase().includes('AUF WIEDERSEHEN') || message.toUpperCase().includes('TSCHAU') || message.toUpperCase().includes('BYE') || message.toUpperCase().includes('TSCHÜSS')){
       var answer = "Bis nächstes Mal " + name + ".";
       sendanswer(answer);
@@ -340,6 +382,12 @@ $(document).ready(function() {
     else if(message.toUpperCase().includes('ICH') && message.toUpperCase().includes('KEINE FREUNDE')){
       var answer = "Das stimmt doch gar nicht, ich bin doch bei dir. ❤";
       sendanswer(answer);
+    }
+    else if(message.toUpperCase().includes('DEAKTIVIERE') && message.toUpperCase().includes('DARKMODE')){
+      var answer = "Okay, der Darkmode wurde deaktivert.";
+      sendanswer(answer);
+      Cookies.set('darkmode', 'false', { expires: 86400 })
+      darkmode("#fff");
     }
     else if(message.toUpperCase().includes('DARKMODE')){
       var answer = "Der Darkmode wird aktiviert.";
@@ -363,7 +411,7 @@ $(document).ready(function() {
     }
     else if(message.toUpperCase().includes('SMARTPHONE') && message.toUpperCase().includes('WELCHES')){
       var minphone = 1;
-      var maxphone = 4;
+      var maxphone = 3;
       var phone = Math.round(Math.random() * (maxphone - minphone)) + minphone;
       if(phone == 1){
         var answer = "Ich empfehle dir das neue iPhone 12. Es besitzt ein OLED Display und ist in verschiedenen Farben erhältlich.";
@@ -381,7 +429,7 @@ $(document).ready(function() {
         var answer = "Ich hätte dir jetzt das Google Pixel 4a empfohlen, aber es ist leider nicht in der Schweiz erhältlich.";
         sendanswer(answer);
       }
-      var answer = "Werbung wegen Markennenung, unbezahlt. #ad #werbung";
+      var answer = "Werbung wegen Markennenung, unbezahlt. #ads #werbung";
       sendanswer(answer);
     }
     else if(message.toUpperCase().includes('LAPTOP') && message.toUpperCase().includes('WELCHER')){
