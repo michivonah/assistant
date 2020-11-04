@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  $('#loading p').css('display', 'none');
   
   // Loading
   $(window).on("load", function(){
@@ -517,7 +518,7 @@ $(document).ready(function() {
     $('::placeholder').css('color', 'rgba(0, 0, 0, 0.5)');
     $('.error').css('color', 'rgba(255, 255, 255, 0.25)');
     $("meta[name=apple-mobile-web-app-status-bar-style]").attr("content", "#181818");
+    $('#loading p').css('color', '#fff');
   }
 
 });
-
