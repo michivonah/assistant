@@ -1,5 +1,4 @@
 $(document).ready(function() {
-  $('#loading p').css('display', 'none');
   
   // Loading
   $(window).on("load", function(){
