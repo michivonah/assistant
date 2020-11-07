@@ -69,7 +69,16 @@ $(document).ready(function() {
     $('#writing').css('display', 'none');
     $('.received-message').css('margin-bottom', '10px');
     $("#chat").append(remessagebubbel);
-    $('#newmessagesound')[0].play();
+    if(answer != "Hallo, mein Name ist Tap. Wie kann ich dir helfen?" && answer != "Tut mir leid, das weiss ich noch nicht. 😅"){
+      var speak = new SpeechSynthesisUtterance();
+      speak.text = answer;
+      speak.volume = 1;
+      speak.lang = 'de';
+      window.speechSynthesis.speak(speak);
+    }
+    else{
+      $('#newmessagesound')[0].play();
+    }
   }
 
   // all answers
