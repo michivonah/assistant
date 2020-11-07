@@ -53,11 +53,23 @@ $(document).ready(function() {
     var remessagedate = $("<h5 class='received-date'>15:26, 04.10.2020</h5>").text(time);
     var remessagetext = $("<p>text</p>").text(answer);
     var placeholder = $("<div class='placeholder-chatfield'></div>");
-    // if weather then add iframe
+    // add widgets
     if(answer.toUpperCase().includes('WETTER')){
       var iframelink = "https://meteo.search.ch/widget/" + location + "?days=1";
       var remessageiframe = $("<iframe scrolling='none' style='border:0;width:95%;height:320px'>Inhalt kann nicht angezeigt werden.</iframe>").attr("src", iframelink);
       remessagebubbel.append(remessagetext, remessageiframe, remessagedate);
+    }
+    else if(answer.toUpperCase().includes('HIER FINDEST DU EINIGE YOUTUBE TIPPS')){
+      var iframelink = "https://michivonah.github.io/YT-Tipps/";
+      var remessageiframe = $("<iframe scrolling='none' style='border:0;width:95%;height:320px'>Inhalt kann nicht angezeigt werden.</iframe>").attr("src", iframelink);
+      remessagebubbel.append(remessagetext, remessageiframe, remessagedate);
+    }
+    else if(answer.toUpperCase().includes('WELCHES SPIEL MÖCHTEST DU SPIELEN')){
+      var btnlink = "https://github.com/michivonah/assistant";
+      var btnname = "Geoguessr";
+      var remessagebutton = $("<button>Test</button>").text(btnname);
+      var remessagebutton = remessagebutton.attr("onclick", "window.open('https://www.geoguessr.com/');");
+      remessagebubbel.append(remessagetext, remessagebutton, remessagedate);
     }
     else if(answer.toUpperCase().includes('HALLO, MEIN NAME IST TAP. WIE KANN ICH DIR HELFEN?')){
       var remessagedate = $("<h5 class='received-date'>Assistent by Michi</h5>");
@@ -107,7 +119,7 @@ $(document).ready(function() {
       //var answer = "Witz wird geschrieben....";
       //sendanswer(answer);
       var min = 1;
-      var max = 11;
+      var max = 17;
       var witz = Math.round(Math.random() * (max - min)) + min;
       if(witz == 1){
         var answer = "Ich habe mit der Pflanze ausgemacht, sie nur noch einmal im Monat zu gießen. Sie ist darauf eingegangen.";
@@ -225,6 +237,14 @@ $(document).ready(function() {
       var answer = "Die Schweiz hat 8.6 Milionen Einwohner. Quelle: wikipedia";
       sendanswer(answer);
     }
+    else if(message.toUpperCase().includes('WIE LANG') && message.toUpperCase().includes('MARATHON')){
+      var answer = "Ein Marathon ist 42.195km lang. Ein Halbmarathon ist dementsprechen halb so lang. Quelle: wikipedia";
+      sendanswer(answer);
+    }
+    else if(message.toUpperCase().includes('EIS') && message.toUpperCase().includes('GESUND')){
+      var answer = "Ich bin mir nicht sicher ob Eis gesund ist, aber lecker ist es auf jeden Fall. 😉";
+      sendanswer(answer);
+    }
     else if(message.toUpperCase().includes('KANNST DU')){
       var answer = "Ich kann noch nicht viel, lerne aber jeden Tag neues. Zurzeit kann ich dir bereits einen Witz erzählen, einige Fragen beantworten oder dir etwas über mich erzählen. 😉";
       sendanswer(answer);
@@ -311,6 +331,20 @@ $(document).ready(function() {
       sendanswer(answer);
       window.open('https://twitter.com/home');
     }
+    else if(message.toUpperCase().includes('ÖFFNE') && message.toUpperCase().includes('DISCORD')){
+      var answer = "Wird gemacht....";
+      sendanswer(answer);
+      window.open('https://discord.com/login');
+    }
+    else if(message.toUpperCase().includes('ÖFFNE') && message.toUpperCase().includes('GITHUB')){
+      var answer = "Kein Problem!";
+      sendanswer(answer);
+      window.open('https://github.com/michivonah/assistant');
+    }
+    else if(message.toUpperCase().includes('SPIEL') && message.toUpperCase().includes('SPIELEN')){
+      var answer = "Welches Spiel möchtest du spielen?";
+      sendanswer(answer);
+    }
     else if(message.toUpperCase().includes('#INFO')){
       var answer = "Befehl noch nicht verfügbar. 😊";
       //var answer = "Letztes Update: 11.10.2020";
@@ -352,8 +386,12 @@ $(document).ready(function() {
       var answer = "Mark Zuckerberg ist der Gründer von Facebook. Ihm gehören zudem die Apps WhatsApp und Instagram. Er ist 36 Jahre alt.";
       sendanswer(answer);
     }
+    else if(message.toUpperCase().includes('WER') && message.toUpperCase().includes('DONALD TRUMP')){
+      var answer = "Donald Trump ist von Herbst 2016 bis Herbst 2020 Präsident von Amerika/USA. Er ist 74 Jahre alt.";
+      sendanswer(answer);
+    }
     else if(message.toUpperCase().includes('WER') && message.toUpperCase().includes('PRÄSIDENT')){
-      var answer = "Donald Trump ist der Präsident von Amerika.";
+      var answer = "Zurzeit finden die US Wahlen in Amerika statt. Man weiss noch nicht wer der nächste Präsident wird.";
       sendanswer(answer);
     }
     else if(message.toUpperCase().includes('WER') && message.toUpperCase().includes('JEFF BEZOS')){
@@ -386,6 +424,10 @@ $(document).ready(function() {
     }
     else if(message.toUpperCase().includes('DU') && message.toUpperCase().includes('DURST')){
       var answer = "Nein, ich mag kein Wasser. Den Technik und Wasser ist bekantlich keine gute Kombination. ⚡";
+      sendanswer(answer);
+    }
+    else if(message.toUpperCase().includes('YOUTUBE') && message.toUpperCase().includes('EMPFEHLEN')){
+      var answer = "Hier findest du einige YouTube Tipps:";
       sendanswer(answer);
     }
     else if(message.toUpperCase().includes('ICH') && message.toUpperCase().includes('KEINE FREUNDE')){
