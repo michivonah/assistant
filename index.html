@@ -38,16 +38,17 @@
         <audio id="newmessagesound" src="new-message.mp3"></audio>
         <div id="chat">
           <div id="context-menu">
-            <p>BETA</p>
-            <i class="fas fa-ellipsis-v" id="more"></i>
-            <a href="https://www.instagram.com/michivonah/"><i class="fab fa-instagram" id="instagram"></i></a>
-            <a href="https://github.com/michivonah/assistant"><i class="fab fa-github" id="github"></i></a>
-            <i class="fas fa-share" id="share" style="display:none;"></i>
-            <i class="far fa-copy" id="copy"></i>
-            <i class="far fa-trash-alt" id="trash"></i>
-            <i class="far fa-star" id="fav" style="display:none;"></i>
+            <p style="display: none;">BETA</p>
+            <img src="logo.png" title="Assistent Tap Logo">
+            <i class="fas fa-ellipsis-v" id="more" title="Einstellungen"></i>
+            <a href="https://www.instagram.com/michivonah/"><i class="fab fa-instagram" id="instagram" title="Instagram"></i></a>
+            <a href="https://github.com/michivonah/assistant"><i class="fab fa-github" id="github" title="Github"></i></a>
+            <i class="fas fa-share" id="share" style="display:none;" title="Teilen"></i>
+            <i class="far fa-copy" id="copy" title="Kopieren"></i>
+            <i class="far fa-trash-alt" id="trash" title="Löschen"></i>
+            <i class="far fa-star" id="fav" style="display:none;" title="Favoriten"></i>
           </div>
-          <div id="writing">
+          <div id="writing" title="Typeing...">
             <div class="dot"></div>
             <div class="dot"></div>
             <div class="dot"></div>
@@ -57,7 +58,8 @@
           <h1>Einstellungen <i class="fas fa-cog"></i></h1>
           <p>Name</p><input type="text" placeholder="Max Mustermann" id="name-settings">
           <p>Ortschaft f&uuml;r Wetter</p><input type="number" placeholder="PLZ" id="plz-settings">
-          <br><button id="save-settings">Speichern</button>
+          <p>Sprachausgabe</p><input type="checkbox" id="speak-settings" checked>
+          <br><button id="save-settings" title="Einstellungen speichern und schliessen">Speichern</button>
           <br><button id="close-settings" style="display:none;">Einstellungen schliessen</button>
           <p>Wenn sie auf den Speichern Button klicken, werden ihre Angaben in einem Cookie &#127850; abgespeichert.</p>
           <h3>About</h3>
@@ -69,14 +71,14 @@
           <p>Hier sind deine gespeicherten Nachrichten aufgef&uuml;hrt. <i class="fas fa-star"></i></p>
           <button id="close-favs">Schliessen</button>
         </div>
+        <div id="chat-suggestions">
+        </div>
         <p id="error-empty" class="error">Ihre Nachricht ist leer.</p>
         <div id="user-chatfield">
           <input id="chat-input" type="text" placeholder="Schreibe hier....">
           <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
         </div>
       </div>
-
-
 
       <script>
       </script>
