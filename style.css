@@ -189,6 +189,19 @@ body{
    border-radius: 8px;
    }
 
+   .received-message button{
+   width: 90%;
+   height: auto;
+   margin-top: 10px;
+   margin-left: 5%;
+   border: 2px solid;
+   border-color: #43a047;
+   border-radius: 8px;
+   font-size: 18px;
+   background: #43a047;
+   font-family: "montserrat", sans-serif;
+   }
+
    .received-date{
    float: right;
    margin: 10px;
