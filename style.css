@@ -64,9 +64,6 @@ body{
 
    #chat{
    user-select: none;
-   ms-user-select: none;
-   moz-user-select: none;
-   webkit-user-select: none;
    height: calc(100vh - 76px);
    }
 
@@ -85,6 +82,13 @@ body{
    float: left;
    margin: 15px;
    color: #fff;
+   }
+
+   #context-menu img{
+   float: left;
+   margin: 5px;
+   margin-left: 15px;
+   height: 75%;
    }
 
    #context-menu i{
@@ -247,6 +251,30 @@ body{
    background: #e67e22;
    top: 0;
    position: absolute;
+   }
+
+   #chat-suggestions{
+   width: 100%;
+   height: auto;
+   background: transparent;
+   bottom: 61px;
+   position: absolute;
+   }
+
+   .chat-suggestion{
+   width: 50px;
+   height: auto;
+   padding: 5px;
+   background: #16a085;
+   color: #fff;
+   border-radius: 12px;
+   margin: 0px;
+   margin-left: 10px;
+   margin-bottom: 5px;
+   position: relative;
+   user-select: none;
+   cursor: pointer;
+   float: left;
    }
 
    .error{
