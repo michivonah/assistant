@@ -23,6 +23,10 @@ $(document).ready(function() {
       //darkmode("#000"); // oled mode
       //darkmode("#e74c3c"); // tomato
     }
+
+    newsuggestion('Hi');
+    newsuggestion('Erzähle mir einen Witz!');
+    newsuggestion('Zeit');
   });
 
   // send answer
@@ -580,6 +584,7 @@ $(document).ready(function() {
       $("html, body").animate({ scrollTop: $(document).height() }, 1000);
       $('#writing').css('display', 'block');
       getanswer(message, $("#name-settings").val(), $("#plz-settings").val());
+      $('.chat-suggestion').css('display', 'none');
     }
     else{
       $('#error-empty').css('display', 'block');
@@ -595,6 +600,17 @@ $(document).ready(function() {
   $("#send-btn").click(function(){
     sendmessage();
   });
+
+  function newsuggestion(text){
+    var suggestion = $("<div class='chat-suggestion'></div>").click(function(){
+      $(".chat-suggestion").toggle( 'fast', function(){
+      });
+      $("#chat-input").val(text);
+      sendmessage();
+     });
+    suggestion.append(text);
+    $("#chat-suggestions").append(suggestion);
+  }
 
   // settings
   $("#save-settings").click(function(){ // when save btn clicked
