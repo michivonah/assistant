@@ -4,7 +4,7 @@ Der Assistent weiss noch nicht viel, er lernt aber bald mehr. Ich bin über jede
 <br><a href="https://michivonah.github.io/assistant/">Assistent starten</a>
 <br><a href="https://forms.gle/fkmXZpzzS7wssVHm6">Feedback geben</a>
 
-Letztes Update: 07.11.2020
+Letztes Update: 08.11.2020
 
 Hinweis: Manchmal wird der Assistent nicht richtig geladen, dann muss man einfach die Seite neu laden und es sollte wieder funktionieren.
 
@@ -15,6 +15,7 @@ Hinweis: Manchmal wird der Assistent nicht richtig geladen, dann muss man einfac
 - einige Apps &ouml;ffnen (YouTube, Spotify, etc.)
 - Kontextmenu (Nachricht ausblenden, Einstellungen &ouml;ffnen)
 - Name speichern (dazu werden Cookies gesetzt)
+- Vorschl&auml;ge f&uuml;r neue Nachrichten
 
 ### geplante Funktionen:
 - Spracheausgabe/Text to Speech (bald verfügbar)
