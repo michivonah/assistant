@@ -139,6 +139,7 @@ $(document).ready(function() {
     else if(message.toUpperCase().includes('WITZ') || message.toUpperCase().includes('ETWAS LUSTIGES') || message.toUpperCase().includes('FLACHWITZ') || message.toUpperCase().includes('SCHERZ')){
       //var answer = "Witz wird geschrieben....";
       //sendanswer(answer);
+      newsuggestion('noch einen Witz');
       var min = 1;
       var max = 17;
       var witz = Math.round(Math.random() * (max - min)) + min;
@@ -228,8 +229,10 @@ $(document).ready(function() {
       }
     }
     else if(message.toUpperCase().includes('GEHT ES DIR')){
-      var answer = "Mir geht es gut, danke der Nachfrage.";
+      var answer = "Mir geht es gut, danke der Nachfrage. Wie geht es dir?";
       sendanswer(answer);
+      newsuggestion('Gut');
+      newsuggestion('Schlecht');
     }
     else if(message.toUpperCase().includes('HEISST DU') || message.toUpperCase().includes('DEIN') && message.toUpperCase().includes('NAME')){
       var answer = "Ich heise Tap.";
@@ -266,7 +269,7 @@ $(document).ready(function() {
       var answer = "Ich bin mir nicht sicher ob Eis gesund ist, aber lecker ist es auf jeden Fall. 😉";
       sendanswer(answer);
     }
-    else if(message.toUpperCase().includes('KANNST DU')){
+    else if(message.toUpperCase().includes('WAS KANNST DU')){
       var answer = "Ich kann noch nicht viel, lerne aber jeden Tag neues. Zurzeit kann ich dir bereits einen Witz erzählen, einige Fragen beantworten oder dir etwas über mich erzählen. 😉";
       sendanswer(answer);
     }
@@ -290,6 +293,7 @@ $(document).ready(function() {
     else if(message.toUpperCase().includes('ZUCKER') && message.toUpperCase().includes('TAG')){
       var answer = "Pro Tag solltest du nicht mehr als 50g Zucker zu dir nehmen. 🍫";
       sendanswer(answer);
+      newsuggestion('Ist Eis gesund?');
     }
     else if(message.toUpperCase().includes('SPRACHEN') && message.toUpperCase().includes('DU')){
       var answer = "Ich spreche zurzeit nur Deutsch und kann noch nicht übersetzen.";
@@ -331,9 +335,11 @@ $(document).ready(function() {
     else if(message.toUpperCase().includes('HAST DU BROT')){
       var answer = "Nein und ich habe auch keine Nägel. 😉";
       sendanswer(answer);
+      newsuggestion('Witz');
+      newsuggestion('Funfact');
     }
     else if(message.toUpperCase().includes('ÖFFNE') && message.toUpperCase().includes('SPOTIFY')){
-      var answer = "Wird gemacht....";
+      var answer = "Wird gemacht...";
       sendanswer(answer);
       window.open('https://open.spotify.com/playlist/37i9dQZEVXbJiyhoAPEfMK?si=lZhxsrvsTqCcs0QEiREE8g');
     }
@@ -348,7 +354,7 @@ $(document).ready(function() {
       window.open('https://www.instagram.com/');
     }
     else if(message.toUpperCase().includes('ÖFFNE') && message.toUpperCase().includes('TWITTER')){
-      var answer = "Wird gemacht....";
+      var answer = "Kein Problem...";
       sendanswer(answer);
       window.open('https://twitter.com/home');
     }
@@ -382,6 +388,7 @@ $(document).ready(function() {
     else if(message.toUpperCase().includes('WANN') && message.toUpperCase().includes('HALLOWEEN')){
       var answer = "Halloween ist nächstes Jahr am 31. Oktober. 🎃";
       sendanswer(answer);
+      newsuggestion('Wann ist Weihnachten?');
     }
     else if(message.toUpperCase().includes('WANN') && message.toUpperCase().includes('WEIHNACHTEN')){
       var answer = "Weihnachten ist am 25. Dezember. 🎄";
@@ -390,6 +397,7 @@ $(document).ready(function() {
     else if(message.toUpperCase().includes('WANN') && message.toUpperCase().includes('HEILIGABEND')){
       var answer = "Heiligabend ist am 24. Dezember. 🎄";
       sendanswer(answer);
+      newsuggestion('Wann ist Halloween?');
     }
     else if(message.toUpperCase().includes('WANN') && message.toUpperCase().includes('NIKOLAUS')){
       var answer = "Nikolaus ist jedes Jahr am 6. Dezember. 🎅";
@@ -398,6 +406,7 @@ $(document).ready(function() {
     else if(message.toUpperCase().includes('ENTWICKLER')){
       var answer = "Ich wurde von Michi von Ah programmiert. 💻 Er heisst auf Instagram und Twitter @michivonah";
       sendanswer(answer);
+      newsuggestion('Feedback geben');
     }
     else if(message.toUpperCase().includes('WER') && message.toUpperCase().includes('ELON MUSK')){
       var answer = "Elon Musk ist der Gründer und CEO von Tesla. ⚡ Er ist 49 Jahre alt.";
@@ -408,12 +417,13 @@ $(document).ready(function() {
       sendanswer(answer);
     }
     else if(message.toUpperCase().includes('WER') && message.toUpperCase().includes('DONALD TRUMP')){
-      var answer = "Donald Trump ist von Herbst 2016 bis Herbst 2020 Präsident von Amerika/USA. Er ist 74 Jahre alt.";
+      var answer = "Donald Trump war von 2016 bis 2020 Präsident von Amerika/USA. Er ist 74 Jahre alt.";
       sendanswer(answer);
     }
     else if(message.toUpperCase().includes('WER') && message.toUpperCase().includes('PRÄSIDENT')){
-      var answer = "Zurzeit finden die US Wahlen in Amerika statt. Man weiss noch nicht wer der nächste Präsident wird.";
+      var answer = "Joe Biden ist ab Januar 2021 Präsident von Amerika.";
       sendanswer(answer);
+      newsuggestion('Wer ist Donald Trump?');
     }
     else if(message.toUpperCase().includes('WER') && message.toUpperCase().includes('JEFF BEZOS')){
       var answer = "Jeff Bezos ist der Gründer und CEO von Amazon. Er gilt als reichste Person der Welt. Er ist 56 Jahre alt. Quelle: wikipedia";
@@ -468,10 +478,12 @@ $(document).ready(function() {
       sendanswer(answer);
       darkmode("#181818");
       Cookies.set('darkmode', 'true', { expires: 86400 })
+      newsuggestion('Deaktivere den Darkmode');
     }
     else if(message.toUpperCase().includes('TEST')){
       var answer = "Test erfolgreich. ✔";
       sendanswer(answer);
+      newsuggestion('Öffne Instagram');
     }
     else if(message.toUpperCase().includes('EIGEN') && message.toUpperCase().includes('CHAT')){
       var answer = "Eine Anleitung wie du dir selber einen Assistenten, wie mich, machen kannst kommt bald.";
@@ -530,6 +542,7 @@ $(document).ready(function() {
     else{
       var answer = "Tut mir leid, das weiss ich noch nicht. 😅";
       sendanswer(answer);
+      newsuggestion('Feedback geben');
       //var answer = "Gib mir mit dem Befehl #Feedback eine Rückmeldung.";
       //sendanswer(answer);
     }
@@ -584,7 +597,6 @@ $(document).ready(function() {
       $("html, body").animate({ scrollTop: $(document).height() }, 1000);
       $('#writing').css('display', 'block');
       getanswer(message, $("#name-settings").val(), $("#plz-settings").val());
-      $('.chat-suggestion').css('display', 'none');
     }
     else{
       $('#error-empty').css('display', 'block');
@@ -593,18 +605,21 @@ $(document).ready(function() {
 
   $("#chat-input").on("keyup", function(e){
     if(e.keyCode == 13){
+      $('.chat-suggestion').css('display', 'none');
       sendmessage();
     }
   });
 
   $("#send-btn").click(function(){
+    $('.chat-suggestion').css('display', 'none');
     sendmessage();
   });
 
   function newsuggestion(text){
-    var suggestion = $("<div class='chat-suggestion'></div>").click(function(){
-      $(".chat-suggestion").toggle( 'fast', function(){
-      });
+    var suggestion = $("<div class='chat-suggestion' style='display:block;'></div>").click(function(){
+      //$(".chat-suggestion").toggle( 'fast', function(){
+      //});
+      $('.chat-suggestion').css('display', 'none');
       $("#chat-input").val(text);
       sendmessage();
      });
