@@ -262,9 +262,9 @@ body{
    }
 
    .chat-suggestion{
-   width: 50px;
+   width: auto;
    height: auto;
-   padding: 5px;
+   padding: 8px;
    background: #16a085;
    color: #fff;
    border-radius: 12px;
