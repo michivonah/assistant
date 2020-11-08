@@ -258,7 +258,7 @@ body{
    height: auto;
    background: transparent;
    bottom: 61px;
-   position: absolute;
+   position: fixed;
    }
 
    .chat-suggestion{
