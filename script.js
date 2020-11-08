@@ -81,7 +81,24 @@ $(document).ready(function() {
     $('#writing').css('display', 'none');
     $('.received-message').css('margin-bottom', '10px');
     $("#chat").append(remessagebubbel);
-    if(answer != "Hallo, mein Name ist Tap. Wie kann ich dir helfen?" && answer != "Tut mir leid, das weiss ich noch nicht. 😅"){
+    // replace emojis
+    var answer = answer.replace('👋', ''); var answer = answer.replace('😅', '');
+    var answer = answer.replace('👍', ''); var answer = answer.replace('👎', '');
+    var answer = answer.replace('😀', ''); var answer = answer.replace('😊', '');
+    var answer = answer.replace('💡', ''); var answer = answer.replace('🍅', '');
+    var answer = answer.replace('🤑', ''); var answer = answer.replace('🏠', '');
+    var answer = answer.replace('🍞', ''); var answer = answer.replace('🌱', '');
+    var answer = answer.replace('⌚', ''); var answer = answer.replace('📅', '');
+    var answer = answer.replace('😉', ''); var answer = answer.replace('🎉', '');
+    var answer = answer.replace('🎁', ''); var answer = answer.replace('🍔', '');
+    var answer = answer.replace('🧃', ''); var answer = answer.replace('🍫', '');
+    var answer = answer.replace('🎃', ''); var answer = answer.replace('🎄', '');
+    var answer = answer.replace('🎅', ''); var answer = answer.replace('💻', '');
+    var answer = answer.replace('⚡', ''); var answer = answer.replace('🍕', '');
+    var answer = answer.replace('❤', ''); var answer = answer.replace('✔', '');
+    var answer = answer.replace('🍪', ''); var answer = answer.replace('😂', '');
+    // speak
+    if(answer != "Hallo, mein Name ist Tap. Wie kann ich dir helfen?" && answer != "Tut mir leid, das weiss ich noch nicht. 😅" && answer != "Werbung wegen Markennenung, unbezahlt. #ads #werbung"){
       var speak = new SpeechSynthesisUtterance();
       speak.text = answer;
       speak.volume = 1;
@@ -438,7 +455,7 @@ $(document).ready(function() {
       var answer = "Okay, der Darkmode wurde deaktivert.";
       sendanswer(answer);
       Cookies.set('darkmode', 'false', { expires: 86400 })
-      darkmode("#fff");
+      darkmode("#E8F5E9");
     }
     else if(message.toUpperCase().includes('DARKMODE')){
       var answer = "Der Darkmode wird aktiviert.";
@@ -617,6 +634,8 @@ $(document).ready(function() {
     $('.error').css('color', 'rgba(255, 255, 255, 0.25)');
     $("meta[name=apple-mobile-web-app-status-bar-style]").attr("content", "#181818");
     $('#loading p').css('color', '#fff');
-  }
-
-});
+    //$('.received-message').css('background', '#3e3e3e');
+    //$('.user-message').css('background', '#3e3e3e');
+    var darkmode = true;
+      }
+    });
