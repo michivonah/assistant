@@ -539,7 +539,7 @@ $(document).ready(function() {
       var usermessagebubbel = $("<div class='user-message'></div>").click(function(){
         $("#context-menu").toggle( 'fast', function(){
        });
-       $('#fav').css('display', 'block');
+       $('#fav').css('display', 'none');
        // delete
        $("#trash").click(function(){
          usermessagebubbel.remove();
