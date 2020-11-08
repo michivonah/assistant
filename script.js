@@ -112,6 +112,9 @@ $(document).ready(function() {
     else{
       $('#newmessagesound')[0].play();
     }
+    if(Cookies.get('darkmode') == "true"){
+      darkmode("#181818");
+    }
   }
 
   // all answers
@@ -140,6 +143,7 @@ $(document).ready(function() {
       //var answer = "Witz wird geschrieben....";
       //sendanswer(answer);
       newsuggestion('noch einen Witz');
+      newsuggestion('Funfact');
       var min = 1;
       var max = 17;
       var witz = Math.round(Math.random() * (max - min)) + min;
@@ -272,6 +276,9 @@ $(document).ready(function() {
     else if(message.toUpperCase().includes('WAS KANNST DU')){
       var answer = "Ich kann noch nicht viel, lerne aber jeden Tag neues. Zurzeit kann ich dir bereits einen Witz erzählen, einige Fragen beantworten oder dir etwas über mich erzählen. 😉";
       sendanswer(answer);
+      newsuggestion('öffne YouTube');
+      newsuggestion('Witz erzählen');
+      newsuggestion('Wer ist Donald Trump?');
     }
     else if(message.toUpperCase().includes('ICH') && message.toUpperCase().includes('GEBURTSTAG')){
       var answer = "Happy Birthday 🎁🎉";
@@ -331,6 +338,8 @@ $(document).ready(function() {
         var answer = "funfact";
         sendanswer(answer);
       }
+      newsuggestion('noch einen Funfact');
+      newsuggestion('Witz');
     }
     else if(message.toUpperCase().includes('HAST DU BROT')){
       var answer = "Nein und ich habe auch keine Nägel. 😉";
@@ -374,7 +383,7 @@ $(document).ready(function() {
     }
     else if(message.toUpperCase().includes('#INFO')){
       var answer = "Befehl noch nicht verfügbar. 😊";
-      //var answer = "Letztes Update: 11.10.2020";
+      //var answer = "Letztes Update: 08.11.2020";
       sendanswer(answer);
     }
     else if(message.toUpperCase().includes('EINSTELLUNGEN')){
@@ -402,11 +411,13 @@ $(document).ready(function() {
     else if(message.toUpperCase().includes('WANN') && message.toUpperCase().includes('NIKOLAUS')){
       var answer = "Nikolaus ist jedes Jahr am 6. Dezember. 🎅";
       sendanswer(answer);
+      newsuggestion('Wann ist Weihnachten?');
     }
     else if(message.toUpperCase().includes('ENTWICKLER')){
       var answer = "Ich wurde von Michi von Ah programmiert. 💻 Er heisst auf Instagram und Twitter @michivonah";
       sendanswer(answer);
       newsuggestion('Feedback geben');
+      newsuggestion('Github öffnen');
     }
     else if(message.toUpperCase().includes('WER') && message.toUpperCase().includes('ELON MUSK')){
       var answer = "Elon Musk ist der Gründer und CEO von Tesla. ⚡ Er ist 49 Jahre alt.";
@@ -424,6 +435,7 @@ $(document).ready(function() {
       var answer = "Joe Biden ist ab Januar 2021 Präsident von Amerika.";
       sendanswer(answer);
       newsuggestion('Wer ist Donald Trump?');
+      newsuggestion('Wer ist Joe Biden?');
     }
     else if(message.toUpperCase().includes('WER') && message.toUpperCase().includes('JEFF BEZOS')){
       var answer = "Jeff Bezos ist der Gründer und CEO von Amazon. Er gilt als reichste Person der Welt. Er ist 56 Jahre alt. Quelle: wikipedia";
@@ -431,6 +443,18 @@ $(document).ready(function() {
     }
     else if(message.toUpperCase().includes('WER') && message.toUpperCase().includes('BILL GATES')){
       var answer = "Bill Gates ist einer der Gründer von Microsoft. Er gilt als eine der reichsten Personen der Welt. Er ist 65 Jahre alt. Quelle: wikipedia";
+      sendanswer(answer);
+    }
+    else if(message.toUpperCase().includes('WER') && message.toUpperCase().includes('JOE BIDEN')){
+      var answer = "Joe Biden gewann 2020 die US Wahlen und ist damit ab Januar 2021 der Präsident von Amerika. Er ist 77 Jahre alt. Quelle: wikipedia";
+      sendanswer(answer);
+    }
+    else if(message.toUpperCase().includes('WER') && message.toUpperCase().includes('ALBERT EINSTEIN')){
+      var answer = "Albert Einstein war ein deutscher Physiker. Er entdeckte viele wichtige Dinge, welche wir heuten noch brauchen. Er gewann 1921/1922 einen Nobelpreis. Er wurde 76 Jahre alt. Quelle: wikipedia";
+      sendanswer(answer);
+    }
+    else if(message.toUpperCase().includes('WER') && message.toUpperCase().includes('KONRAD ZUSE')){
+      var answer = "Konrad Zuse erfand den ersten funktionierenden Computer. Er wurde 85 Jahre alt. Quelle: wikipedia";
       sendanswer(answer);
     }
     else if(message.toUpperCase().includes('ÄLTESTER') && message.toUpperCase().includes('MENSCH')){
@@ -465,7 +489,11 @@ $(document).ready(function() {
       var answer = "Das stimmt doch gar nicht, ich bin doch bei dir. ❤";
       sendanswer(answer);
     }
-    else if(message.toUpperCase().includes('DEAKTIVIERE') && message.toUpperCase().includes('DARKMODE')){
+    else if(message.toUpperCase().includes('WIE GROSS') && message.toUpperCase().includes('DU')){
+      var answer = "Ich bin nicht grösser als 0.6 MB. 😉";
+      sendanswer(answer);
+    }
+    else if(message.toUpperCase().includes('DEAKTIVIER') && message.toUpperCase().includes('DARKMODE')){
       var answer = "Okay, der Darkmode wurde deaktivert.";
       sendanswer(answer);
       Cookies.set('darkmode', 'false', { expires: 86400 })
@@ -483,7 +511,7 @@ $(document).ready(function() {
     else if(message.toUpperCase().includes('TEST')){
       var answer = "Test erfolgreich. ✔";
       sendanswer(answer);
-      newsuggestion('Öffne Instagram');
+      newsuggestion('Witz erzählen');
     }
     else if(message.toUpperCase().includes('EIGEN') && message.toUpperCase().includes('CHAT')){
       var answer = "Eine Anleitung wie du dir selber einen Assistenten, wie mich, machen kannst kommt bald.";
@@ -665,8 +693,8 @@ $(document).ready(function() {
     $('.error').css('color', 'rgba(255, 255, 255, 0.25)');
     $("meta[name=apple-mobile-web-app-status-bar-style]").attr("content", "#181818");
     $('#loading p').css('color', '#fff');
-    //$('.received-message').css('background', '#3e3e3e');
-    //$('.user-message').css('background', '#3e3e3e');
+    $('.received-message').css('background', '#3e3e3e');
+    $('.user-message').css('background', '#3e3e3e');
     var darkmode = true;
       }
     });
