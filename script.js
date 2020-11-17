@@ -105,8 +105,10 @@ $(document).ready(function() {
     if(answer != "Hallo, mein Name ist Tap. Wie kann ich dir helfen?" && answer != "Tut mir leid, das weiss ich noch nicht. 😅" && answer != "Werbung wegen Markennenung, unbezahlt. #ads #werbung"){
       var speak = new SpeechSynthesisUtterance();
       speak.text = answer;
-      speak.volume = 1;
-      speak.lang = 'de';
+      speak.volume = 1; // Volume
+      speak.lang = 'de-CH';  // Language
+      speak.rate = 1.2; // Speed
+      speak.pitch = 1; // Tonhöhe
       window.speechSynthesis.speak(speak);
     }
     else{
@@ -138,6 +140,9 @@ $(document).ready(function() {
     else if(message.toUpperCase().includes('DANKE')){
       var answer = "Kein Problem 😊";
       sendanswer(answer);
+    }
+    else if(message.toUpperCase().includes('LOL') || message.toUpperCase().includes('KA') || message.toUpperCase().includes('SRY') || message.toUpperCase().includes('WHY') || message.toUpperCase().includes('OK')){
+      // nothing
     }
     else if(message.toUpperCase().includes('WITZ') || message.toUpperCase().includes('ETWAS LUSTIGES') || message.toUpperCase().includes('FLACHWITZ') || message.toUpperCase().includes('SCHERZ')){
       //var answer = "Witz wird geschrieben....";
@@ -331,11 +336,15 @@ $(document).ready(function() {
         sendanswer(answer);
       }
       else if(funfact == 5){
-        var answer = "funfact";
+        var answer = "In Schottland gibt es 421 Wörter für Schnee.";
         sendanswer(answer);
       }
       else if(funfact == 6){
-        var answer = "funfact";
+        var answer = "Die amerikanische Flagge wurde von einem High School Schüler gezeichnet.";
+        sendanswer(answer);
+      }
+      else if(funfact == 7){
+        var answer = "Der erste kommerziele Passagierflug dauert 23 Minuten.";
         sendanswer(answer);
       }
       newsuggestion('noch einen Funfact');
