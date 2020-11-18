@@ -291,6 +291,21 @@ body{
    display: none;
    }
 
+   .alert-copied{
+   color: #fff;
+   background: rgba(22, 160, 133, 0.65);
+   position: fixed;
+   border: none;
+   border-radius: 12px;
+   padding: 8px;
+   bottom: 10vh;
+   margin-left: calc(5% - 8px);
+   margin-right: calc(5% - 8px);
+   width: 90%;
+   display: none;
+   transition: 2500ms all;
+   }
+
    a{
    color: #fff;
    text-decoration: none;
