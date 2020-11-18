@@ -2,7 +2,7 @@ $(document).ready(function() {
 
   // Loading
   $(window).on("load", function(){
-    $("#loading-screen").fadeOut(750);
+    //$("#loading-screen").fadeOut(750);
     var name = ""; // default name
     var location = 6003; // default location = 6003 lucerne
     $("#name-settings").val(Cookies.get('name'));
@@ -32,7 +32,7 @@ $(document).ready(function() {
   // send answer
   function sendanswer(answer, location){
     var remessagebubbel = $("<div class='received-message'></div>").click(function(){
-     $("#context-menu").toggle( 'fast', function(){
+     $("#context-menu").toggle(150, function(){
      });
      // trash
      $("#trash").click(function(){
@@ -48,6 +48,8 @@ $(document).ready(function() {
        document.execCommand("copy");
        $temp.remove();
        $('#context-menu').css('display', 'none');
+       $(".alert-copied").css('display', 'block');
+       $(".alert-copied").delay(1500).fadeTo(10, 0);
      });
     });
     var gettime = new Date();
@@ -75,6 +77,9 @@ $(document).ready(function() {
       var remessagebutton = remessagebutton.attr("onclick", "window.open('https://www.geoguessr.com/');");
       remessagebubbel.append(remessagetext, remessagebutton, remessagedate);
     }
+    else if(answer == ""){
+      // nothing
+    }
     else if(answer.toUpperCase().includes('HALLO, MEIN NAME IST TAP. WIE KANN ICH DIR HELFEN?')){
       var remessagedate = $("<h5 class='received-date'>Assistent by Michi</h5>");
       remessagebubbel.append(remessagetext, remessagedate);
@@ -85,7 +90,7 @@ $(document).ready(function() {
     $('#writing').css('display', 'none');
     $('.received-message').css('margin-bottom', '10px');
     $("#chat").append(remessagebubbel);
-    // replace emojis
+    // replace emojis and some words
     var answer = answer.replace('👋', ''); var answer = answer.replace('😅', '');
     var answer = answer.replace('👍', ''); var answer = answer.replace('👎', '');
     var answer = answer.replace('😀', ''); var answer = answer.replace('😊', '');
@@ -101,6 +106,10 @@ $(document).ready(function() {
     var answer = answer.replace('⚡', ''); var answer = answer.replace('🍕', '');
     var answer = answer.replace('❤', ''); var answer = answer.replace('✔', '');
     var answer = answer.replace('🍪', ''); var answer = answer.replace('😂', '');
+    var answer = answer.replace('km', 'Kilometer'); var answer = answer.replace('cm', 'Zentimeter');
+    var answer = answer.replace('Hmm', ''); var answer = answer.replace('🗺', '');
+    var answer = answer.replace('wikipedia', 'Wie kie Pee die aah'); var answer = answer.replace('Ok', 'Okay');
+    var answer = answer.replace('ca', 'Zirka'); //var answer = answer.replace('Wort', '');
     // speak
     if(answer != "Hallo, mein Name ist Tap. Wie kann ich dir helfen?" && answer != "Tut mir leid, das weiss ich noch nicht. 😅" && answer != "Werbung wegen Markennenung, unbezahlt. #ads #werbung"){
       var speak = new SpeechSynthesisUtterance();
@@ -109,6 +118,7 @@ $(document).ready(function() {
       speak.lang = 'de-CH';  // Language
       speak.rate = 1.2; // Speed
       speak.pitch = 1; // Tonhöhe
+      var answer = answer.replace('Tap', 'Täppp');
       window.speechSynthesis.speak(speak);
     }
     else{
@@ -126,11 +136,11 @@ $(document).ready(function() {
       sendanswer(answer);
     }
     else if(message.toUpperCase().includes('JA') || message.toUpperCase().includes('👍')){
-      var answer = "Ok";
+      var answer = "";
       sendanswer(answer);
     }
     else if(message.toUpperCase().includes('NEIN') || message.toUpperCase().includes('👎')){
-      var answer = "Schade";
+      var answer = "";
       sendanswer(answer);
     }
     else if(message.toUpperCase().includes('GUT')){
@@ -138,11 +148,12 @@ $(document).ready(function() {
       sendanswer(answer);
     }
     else if(message.toUpperCase().includes('DANKE')){
-      var answer = "Kein Problem 😊";
+      var answer = "Kein Problem, dir helfe ich doch gerne. 😊";
       sendanswer(answer);
     }
     else if(message.toUpperCase().includes('LOL') || message.toUpperCase().includes('KA') || message.toUpperCase().includes('SRY') || message.toUpperCase().includes('WHY') || message.toUpperCase().includes('OK')){
-      // nothing
+      var answer = "";
+      sendanswer(answer);
     }
     else if(message.toUpperCase().includes('WITZ') || message.toUpperCase().includes('ETWAS LUSTIGES') || message.toUpperCase().includes('FLACHWITZ') || message.toUpperCase().includes('SCHERZ')){
       //var answer = "Witz wird geschrieben....";
@@ -273,6 +284,7 @@ $(document).ready(function() {
     else if(message.toUpperCase().includes('WIE LANG') && message.toUpperCase().includes('MARATHON')){
       var answer = "Ein Marathon ist 42.195km lang. Ein Halbmarathon ist dementsprechen halb so lang. Quelle: wikipedia";
       sendanswer(answer);
+      newsuggestion('Ist Eis gesund?');
     }
     else if(message.toUpperCase().includes('EIS') && message.toUpperCase().includes('GESUND')){
       var answer = "Ich bin mir nicht sicher ob Eis gesund ist, aber lecker ist es auf jeden Fall. 😉";
@@ -311,13 +323,13 @@ $(document).ready(function() {
       var answer = "Ich spreche zurzeit nur Deutsch und kann noch nicht übersetzen.";
       sendanswer(answer);
     }
-    else if(message.toUpperCase().includes('SPRECHEN') && message.toUpperCase().includes('DU')){
-      var answer = "Ich werde bald eine Stimme erhalten. Bis dahin kannst du mit mir schreiben. 😉";
+    else if(message.toUpperCase().includes('STIMME') && message.toUpperCase().includes('DEIN')){
+      var answer = "Ich werde bald eine eigene Stimme erhalten. Bis dahin wird meinem Stimme von deinem Betriebssystem verwaltet. 😉";
       sendanswer(answer);
     }
     else if(message.toUpperCase().includes('FUNFACT')){
       var minfact = 1;
-      var maxfact = 4;
+      var maxfact = 5;
       var funfact = Math.round(Math.random() * (maxfact - minfact)) + minfact;
       if(funfact == 1){
         var answer = "Skorpione können bis zu einem Jahr ohne Nahrung überleben.";
@@ -336,7 +348,7 @@ $(document).ready(function() {
         sendanswer(answer);
       }
       else if(funfact == 5){
-        var answer = "In Schottland gibt es 421 Wörter für Schnee.";
+        var answer = "In Schottland gibt es 421 verschiedene Wörter für Schnee.";
         sendanswer(answer);
       }
       else if(funfact == 6){
@@ -391,9 +403,9 @@ $(document).ready(function() {
       sendanswer(answer);
     }
     else if(message.toUpperCase().includes('#INFO')){
-      var answer = "Befehl noch nicht verfügbar. 😊";
-      //var answer = "Letztes Update: 08.11.2020";
+      var answer = "Das letzte Update ist am 00.00.2020 erschienen.";
       sendanswer(answer);
+      newsuggestion('Einstellungen öffnen');
     }
     else if(message.toUpperCase().includes('EINSTELLUNGEN')){
       var answer = "Einstellungen werden geöffnet.";
@@ -527,7 +539,7 @@ $(document).ready(function() {
       sendanswer(answer);
     }
     else if(message.toUpperCase().includes('SMART') && message.toUpperCase().includes('HOME') || message.toUpperCase().includes('LICHT')){
-      var answer = "Smarthome Steuerung ist noch nicht verfügbar. Ich arbeite dran...";
+      var answer = "Die Smarthome Steuerung ist noch nicht verfügbar. Ich arbeite dran...";
       sendanswer(answer);
     }
     else if(message.toUpperCase().includes('SMARTPHONE') && message.toUpperCase().includes('WELCHES')){
@@ -535,7 +547,7 @@ $(document).ready(function() {
       var maxphone = 3;
       var phone = Math.round(Math.random() * (maxphone - minphone)) + minphone;
       if(phone == 1){
-        var answer = "Ich empfehle dir das neue iPhone 12. Es besitzt ein OLED Display und ist in verschiedenen Farben erhältlich.";
+        var answer = "Ich empfehle dir das neue iPhone 12. Es besitzt ein OLED Display und ist in verschiedenen Farben erhältlich. Wenn du ein kleines Smartphone willst, empfehle ich dir das iPhone 12 Mini.";
         sendanswer(answer);
       }
       else if(phone == 2){
@@ -546,7 +558,7 @@ $(document).ready(function() {
         var answer = "Hmm, für 250 CHF empfehle ich dir das Samsung Galaxy A41.";
         sendanswer(answer);
       }
-      else if(phone == 4){
+      else if(phone == 0){
         var answer = "Ich hätte dir jetzt das Google Pixel 4a empfohlen, aber es ist leider nicht in der Schweiz erhältlich.";
         sendanswer(answer);
       }
@@ -591,7 +603,7 @@ $(document).ready(function() {
       $('#error-empty').css('display', 'none');
       var message = $("#chat-input").val();
       var usermessagebubbel = $("<div class='user-message'></div>").click(function(){
-        $("#context-menu").toggle( 'fast', function(){
+        $("#context-menu").toggle(150, function(){
        });
        $('#fav').css('display', 'none');
        // delete
@@ -608,6 +620,8 @@ $(document).ready(function() {
          document.execCommand("copy");
          $temp.remove();
          $('#context-menu').css('display', 'none');
+         $(".alert-copied").css('display', 'block');
+         $(".alert-copied").delay(1500).fadeTo(10, 0);
        });
        // favorite
        $("#fav").click(function(){
