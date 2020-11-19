@@ -32,7 +32,7 @@ $(document).ready(function() {
     if(Cookies.get('voiceoutput') == "false"){
       document.getElementById("speak-settings").checked = false;
     }
-    else if(Cookies.get('voiceoutput') == "true"){
+    else{
       document.getElementById("speak-settings").checked = true;
     }
 
