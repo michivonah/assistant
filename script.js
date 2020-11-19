@@ -23,6 +23,18 @@ $(document).ready(function() {
       //darkmode("#000"); // oled mode
       //darkmode("#e74c3c"); // tomato
     }
+    else if(Cookies.get('darkmode') == "oled"){
+      //darkmode("#181818"); // standard darkmode
+      darkmode("#000"); // oled mode
+      //darkmode("#e74c3c"); // tomato
+    }
+    // check voice output
+    if(Cookies.get('voiceoutput') == "false"){
+      document.getElementById("speak-settings").checked = false;
+    }
+    else if(Cookies.get('voiceoutput') == "true"){
+      document.getElementById("speak-settings").checked = true;
+    }
 
     newsuggestion('Hi');
     newsuggestion('Erzähle mir einen Witz!');
@@ -109,17 +121,22 @@ $(document).ready(function() {
     var answer = answer.replace('km', 'Kilometer'); var answer = answer.replace('cm', 'Zentimeter');
     var answer = answer.replace('Hmm', ''); var answer = answer.replace('🗺', '');
     var answer = answer.replace('wikipedia', 'Wie kie Pee die aah'); var answer = answer.replace('Ok', 'Okay');
-    var answer = answer.replace('ca', 'Zirka'); //var answer = answer.replace('Wort', '');
+    var answer = answer.replace('ca', 'Zirka'); var answer = answer.replace('’', '');
     // speak
-    if(answer != "Hallo, mein Name ist Tap. Wie kann ich dir helfen?" && answer != "Tut mir leid, das weiss ich noch nicht. 😅" && answer != "Werbung wegen Markennenung, unbezahlt. #ads #werbung"){
-      var speak = new SpeechSynthesisUtterance();
-      speak.text = answer;
-      speak.volume = 1; // Volume
-      speak.lang = 'de-CH';  // Language
-      speak.rate = 1.2; // Speed
-      speak.pitch = 1; // Tonhöhe
-      var answer = answer.replace('Tap', 'Täppp');
-      window.speechSynthesis.speak(speak);
+    if(document.getElementById("speak-settings").checked == true){
+      if(answer != "Hallo, mein Name ist Tap. Wie kann ich dir helfen?" && answer != "Tut mir leid, das weiss ich noch nicht. " && answer != "Werbung wegen Markennenung, unbezahlt. #ads #werbung"){
+        var speak = new SpeechSynthesisUtterance();
+        speak.text = answer;
+        speak.volume = 1; // Volume
+        speak.lang = 'de-CH';  // Language
+        speak.rate = 1.2; // Speed
+        speak.pitch = 1; // Tonhöhe
+        var answer = answer.replace('Tap', 'Täppp');
+        window.speechSynthesis.speak(speak);
+      }
+      else{
+        $('#newmessagesound')[0].play();
+      }
     }
     else{
       $('#newmessagesound')[0].play();
@@ -143,8 +160,8 @@ $(document).ready(function() {
       var answer = "";
       sendanswer(answer);
     }
-    else if(message.toUpperCase().includes('GUT')){
-      var answer = "Toll 😀";
+    else if(message.toUpperCase().includes('GUT') || message.toUpperCase().includes('SCHLECHT')){
+      var answer = "Ok";
       sendanswer(answer);
     }
     else if(message.toUpperCase().includes('DANKE')){
@@ -683,6 +700,7 @@ $(document).ready(function() {
     // set cookies
     Cookies.set('name', $("#name-settings").val(), { expires: 86400 })
     Cookies.set('location', $("#plz-settings").val(), { expires: 86400 })
+    Cookies.set('voiceoutput', document.getElementById("speak-settings").checked, { expires: 86400 })
     // toggle settings
     $("#settings").toggle( 'fast', function(){
     });
