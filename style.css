@@ -261,6 +261,13 @@ body{
    position: fixed;
    }
 
+   #speak-settings{
+   width: 36px;
+   height: 36px;
+   background: #16a085;
+   color: #16a085;
+   }
+
    .chat-suggestion{
    width: auto;
    height: auto;
