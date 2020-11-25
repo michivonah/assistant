@@ -24,7 +24,7 @@
          <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 
 </head>
-<body oncontextmenu="return false">
+<body oncontextmenu="return true">
 
           <!-- Loadingscreen -->
           <div id="loading-screen">
@@ -80,6 +80,15 @@
           <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
         </div>
       </div>
+
+      <menu type="context" id="popup-menu">
+        <menuitem>Nachricht speichern</menuitem>
+        <menuitem>Nachricht löschen</menuitem>
+        <menuitem onclick="darkmode()">Darkmode aktivieren</menuitem>
+        <menuitem onclick="$('#chat-input').val('Einstellungen'); sendmessage();">Einstellungen öffnen</menuitem>
+        <hr>
+        <menuitem onclick="window.open('https://github.com/michivonah/assistant')">Github</menuitem>
+      </menu>
 
       <script>
       $(window).on("load", function(){
