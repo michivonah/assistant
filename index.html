@@ -4,6 +4,7 @@
          <title>Assistent Tap</title>
          <meta name="mobile-web-app-title" content="Assistent Tap">
          <meta name="apple-mobile-web-app-title" content="Assistent Tap">
+         <meta name="description" content="An assistant which you can ask some questions, like 'how is the weather today?'. Its currently only available in german language. ">
          <link rel="icon" type="image/png" href="logo.png">
          <link rel="shortcut icon" type="image/png" href="logo.png">
          <link rel="apple-touch-icon" href="logo.png" sizes="any">
@@ -24,7 +25,7 @@
          <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 
 </head>
-<body oncontextmenu="return true">
+<body oncontextmenu="return true" id="body" contextmenu="newcontextmenubrowser">
 
           <!-- Loadingscreen -->
           <div id="loading-screen">
@@ -81,11 +82,11 @@
         </div>
       </div>
 
-      <menu type="context" id="popup-menu">
-        <menuitem>Nachricht speichern</menuitem>
-        <menuitem>Nachricht löschen</menuitem>
-        <menuitem onclick="darkmode()">Darkmode aktivieren</menuitem>
-        <menuitem onclick="$('#chat-input').val('Einstellungen'); sendmessage();">Einstellungen öffnen</menuitem>
+      <menu type="context" id="newcontextmenubrowser" style="display:none;">
+        <!-- <menuitem onclick="alert('Coming soon...')">Nachricht speichern</menuitem>
+        <menuitem onclick="alert('Coming soon...')">Nachricht löschen</menuitem>-->
+        <menuitem onclick="Cookies.set('darkmode', 'false', { expires: 86400 }); location.reload();">Darkmode aktivieren</menuitem>
+        <menuitem onclick="$('#settings').toggle( 'fast', function(){});$('#chat').toggle( 'fast', function(){});">Einstellungen öffnen</menuitem>
         <hr>
         <menuitem onclick="window.open('https://github.com/michivonah/assistant')">Github</menuitem>
       </menu>
