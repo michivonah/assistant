@@ -39,6 +39,8 @@ $(document).ready(function() {
     newsuggestion('Hi');
     newsuggestion('Erzähle mir einen Witz!');
     newsuggestion('Zeit');
+
+    var messeagecounter = 0;
   });
 
   // send answer
@@ -83,13 +85,15 @@ $(document).ready(function() {
       remessagebubbel.append(remessagetext, remessageiframe, remessagedate);
     }
     else if(answer.toUpperCase().includes('WELCHES SPIEL MÖCHTEST DU SPIELEN')){
-      var btnlink = "https://github.com/michivonah/assistant";
-      var btnname = "Geoguessr";
-      var remessagebutton = $("<button>Test</button>").text(btnname);
-      var remessagebutton = remessagebutton.attr("onclick", "window.open('https://www.geoguessr.com/');");
-      remessagebubbel.append(remessagetext, remessagebutton, remessagedate);
+      var game1 = $("<button class='gamebtn'>Geoguessr</button>").attr("onclick", "window.open('https://www.geoguessr.com/');");
+      var game2 = $("<button class='gamebtn'>Jass Federal</button>").attr("onclick", "window.open('https://www.jassfederal.ch/');");
+      var game3 = $("<button class='gamebtn'>Dinoscape</button>").attr("onclick", "window.open('https://dinoscape.de/');");
+      var game4 = $("<button class='gamebtn'>slither.io</button>").attr("onclick", "window.open('https://slither.io');");
+      var game5 = $("<button class='gamebtn'>agar.io</button>").attr("onclick", "window.open('https://agar.io/');");
+      var placeholder = $("<div style='height:0px;width:90%; background:transparent;'></div>");
+      remessagebubbel.append(remessagetext, game1, game2, game4, placeholder, remessagedate);
     }
-    else if(answer == ""){
+    else if(answer == ""){ // if answer is empty don't send an answer
       // nothing
     }
     else if(answer.toUpperCase().includes('HALLO, MEIN NAME IST TAP. WIE KANN ICH DIR HELFEN?')){
@@ -102,7 +106,7 @@ $(document).ready(function() {
     $('#writing').css('display', 'none');
     $('.received-message').css('margin-bottom', '10px');
     $("#chat").append(remessagebubbel);
-    // replace emojis and some words
+    // replace emojis and some words for better tts
     var answer = answer.replace('👋', ''); var answer = answer.replace('😅', '');
     var answer = answer.replace('👍', ''); var answer = answer.replace('👎', '');
     var answer = answer.replace('😀', ''); var answer = answer.replace('😊', '');
@@ -118,10 +122,13 @@ $(document).ready(function() {
     var answer = answer.replace('⚡', ''); var answer = answer.replace('🍕', '');
     var answer = answer.replace('❤', ''); var answer = answer.replace('✔', '');
     var answer = answer.replace('🍪', ''); var answer = answer.replace('😂', '');
-    var answer = answer.replace('km', 'Kilometer'); var answer = answer.replace('cm', 'Zentimeter');
+    var answer = answer.replace('🎮', ''); var answer = answer.replace('😁', '');
+    var answer = answer.replace('km ', 'Kilometer'); var answer = answer.replace('cm ', 'Zentimeter');
     var answer = answer.replace('Hmm', ''); var answer = answer.replace('🗺', '');
     var answer = answer.replace('wikipedia', 'Wie kie Pee die aah'); var answer = answer.replace('Ok', 'Okay');
     var answer = answer.replace('ca', 'Zirka'); var answer = answer.replace('’', '');
+    //var messeagecounter = + 1;
+    //document.title = "(" + messeagecounter + ") - Assistent Tap";
     // speak
     if(document.getElementById("speak-settings").checked == true){
       if(answer != "Hallo, mein Name ist Tap. Wie kann ich dir helfen?" && answer != "Tut mir leid, das weiss ich noch nicht. " && answer != "Werbung wegen Markennenung, unbezahlt. #ads #werbung"){
@@ -178,7 +185,7 @@ $(document).ready(function() {
       newsuggestion('noch einen Witz');
       newsuggestion('Funfact');
       var min = 1;
-      var max = 17;
+      var max = 22;
       var witz = Math.round(Math.random() * (max - min)) + min;
       if(witz == 1){
         var answer = "Ich habe mit der Pflanze ausgemacht, sie nur noch einmal im Monat zu gießen. Sie ist darauf eingegangen.";
@@ -262,6 +269,36 @@ $(document).ready(function() {
         var answer = "Was macht ein Mathematiker im Garten?";
         sendanswer(answer);
         var answer = "Wurzeln ziehen 🌱";
+        sendanswer(answer);
+      }
+      else if(witz == 18){
+        var answer = "Was ist die Steigerungsform von Buchstabensuppe?";
+        sendanswer(answer);
+        var answer = "Wörtersee";
+        sendanswer(answer);
+      }
+      else if(witz == 19){
+        var answer = "Was sagt eine Wand zur anderen?";
+        sendanswer(answer);
+        var answer = "Wir treffen uns in der Ecke.";
+        sendanswer(answer);
+      }
+      else if(witz == 20){
+        var answer = "Welches Getränk trinken Chefs?";
+        sendanswer(answer);
+        var answer = "Leitungswasser";
+        sendanswer(answer);
+      }
+      else if(witz == 21){
+        var answer = "Wie nennt man einen Bumerang, welcher nicht zurück kommt?";
+        sendanswer(answer);
+        var answer = "Stock";
+        sendanswer(answer);
+      }
+      else if(witz == 22){
+        var answer = "Was ist rot und schlecht für die Zähne?";
+        sendanswer(answer);
+        var answer = "Ein Ziegelstein!";
         sendanswer(answer);
       }
     }
@@ -408,7 +445,7 @@ $(document).ready(function() {
     else if(message.toUpperCase().includes('ÖFFNE') && message.toUpperCase().includes('DISCORD')){
       var answer = "Wird gemacht....";
       sendanswer(answer);
-      window.open('https://discord.com/login');
+      window.open('https://discord.com/app');
     }
     else if(message.toUpperCase().includes('ÖFFNE') && message.toUpperCase().includes('GITHUB')){
       var answer = "Kein Problem!";
@@ -416,7 +453,7 @@ $(document).ready(function() {
       window.open('https://github.com/michivonah/assistant');
     }
     else if(message.toUpperCase().includes('SPIEL') && message.toUpperCase().includes('SPIELEN')){
-      var answer = "Welches Spiel möchtest du spielen?";
+      var answer = "Welches Spiel möchtest du spielen? 🎮";
       sendanswer(answer);
     }
     else if(message.toUpperCase().includes('#INFO')){
@@ -649,6 +686,8 @@ $(document).ready(function() {
          $('#context-menu').css('display', 'none');
          $('#chat').css('display', 'none');
          $('#favs').css('display', 'block');
+         var favcount = 0;
+         localStorage.setItem('fav' + favcount, usermessagebubbel);
        });
       });;
       //time
@@ -706,6 +745,9 @@ $(document).ready(function() {
     });
     $("#chat").toggle( 'fast', function(){
     });
+    //$('#settings').css('display', 'none');
+    //$('#chat').css('display', 'block');
+    $("html, body").animate({ scrollTop: $(document).height() }, 1000);
   });
 
   $("#more").click(function(){
@@ -727,15 +769,17 @@ $(document).ready(function() {
   // darkmode
   function darkmode(color){
     $('body').css('background', color);
-    $('#loading-screen').css('background', color);
+    $('#loading-screen').css('background', color); // change loading screen color
     $('i').css('color', color);
     $('input').css('color', color);
     $('::placeholder').css('color', 'rgba(0, 0, 0, 0.5)');
     $('.error').css('color', 'rgba(255, 255, 255, 0.25)');
-    $("meta[name=apple-mobile-web-app-status-bar-style]").attr("content", "#181818");
+    $("meta[name=apple-mobile-web-app-status-bar-style]").attr("content", "#181818"); // change status bar color
+    $("meta[name=mobile-web-app-status-bar-style]").attr("content", "#181818"); // change status bar color
     $('#loading p').css('color', '#fff');
     $('.received-message').css('background', '#3e3e3e');
     $('.user-message').css('background', '#3e3e3e');
+    document.title = "Tap";
     var darkmode = true;
       }
     });
