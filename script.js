@@ -494,44 +494,74 @@ $(document).ready(function() {
       newsuggestion('Feedback geben');
       newsuggestion('Github öffnen');
     }
-    else if(message.toUpperCase().includes('WER') && message.toUpperCase().includes('ELON MUSK')){
-      var answer = "Elon Musk ist der Gründer und CEO von Tesla. ⚡ Er ist 49 Jahre alt.";
-      sendanswer(answer);
+    else if(message.toUpperCase().includes('WER')){
+      // new function to search online for answer
+        if(message.toUpperCase().includes('WER') && message.toUpperCase().includes('ELON MUSK')){
+          var answer = "Elon Musk ist der Gründer und CEO von Tesla. ⚡ Er ist 49 Jahre alt.";
+          sendanswer(answer);
+        }
+        else if(message.toUpperCase().includes('WER') && message.toUpperCase().includes('MARK ZUCKERBERG')){
+          var answer = "Mark Zuckerberg ist der Gründer von Facebook. Ihm gehören zudem die Apps WhatsApp und Instagram. Er ist 36 Jahre alt.";
+          sendanswer(answer);
+        }
+        else if(message.toUpperCase().includes('WER') && message.toUpperCase().includes('DONALD TRUMP')){
+          var answer = "Donald Trump war von 2016 bis 2020 Präsident von Amerika/USA. Er ist 74 Jahre alt.";
+          sendanswer(answer);
+        }
+        else if(message.toUpperCase().includes('WER') && message.toUpperCase().includes('PRÄSIDENT')){
+          var answer = "Joe Biden ist ab Januar 2021 Präsident von Amerika.";
+          sendanswer(answer);
+          newsuggestion('Wer ist Donald Trump?');
+          newsuggestion('Wer ist Joe Biden?');
+        }
+        else if(message.toUpperCase().includes('WER') && message.toUpperCase().includes('JEFF BEZOS')){
+          var answer = "Jeff Bezos ist der Gründer und CEO von Amazon. Er gilt als reichste Person der Welt. Er ist 56 Jahre alt. Quelle: wikipedia";
+          sendanswer(answer);
+        }
+        else if(message.toUpperCase().includes('WER') && message.toUpperCase().includes('BILL GATES')){
+          var answer = "Bill Gates ist einer der Gründer von Microsoft. Er gilt als eine der reichsten Personen der Welt. Er ist 65 Jahre alt. Quelle: wikipedia";
+          sendanswer(answer);
+        }
+        else if(message.toUpperCase().includes('WER') && message.toUpperCase().includes('JOE BIDEN')){
+          var answer = "Joe Biden gewann 2020 die US Wahlen und ist damit ab Januar 2021 der Präsident von Amerika. Er ist 77 Jahre alt. Quelle: wikipedia";
+          sendanswer(answer);
+        }
+        else if(message.toUpperCase().includes('WER') && message.toUpperCase().includes('ALBERT EINSTEIN')){
+          var answer = "Albert Einstein war ein deutscher Physiker. Er entdeckte viele wichtige Dinge, welche wir heuten noch brauchen. Er gewann 1921/1922 einen Nobelpreis. Er wurde 76 Jahre alt. Quelle: wikipedia";
+          sendanswer(answer);
+        }
+        else if(message.toUpperCase().includes('WER') && message.toUpperCase().includes('KONRAD ZUSE')){
+          var answer = "Konrad Zuse erfand den ersten funktionierenden Computer. Er wurde 85 Jahre alt. Quelle: wikipedia";
+          sendanswer(answer);
+        }
+        else{
+          // delete wer from message
+          var message = message.replace(' ', '_');
+          var message = message.replace('wer_', '');
+          var message = message.replace('Wer_', '');
+          var message = message.replace('WER_', '');
+          var message = message.replace('wER_', '');
+          var message = message.replace('ist', '');
+          var message = message.replace('IST', '');
+          var message = message.replace('Ist', '');
+          var message = message.replace(' ', '_');
+          var message = message.replace(' ', '_');
+          var wikiurl = "https://de.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&explaintext=1&titles=" + message;
+          $.getJSON(wikiurl, function(data) {
+                //var wikipagetitle = data.query.normalized[0].to;
+                // thanks to https://stackoverflow.com/questions/30006183/get-wikipedia-pageid-from-title for code to get wikipedia pageid
+                var pageid = [];
+	              for( var id in data.query.pages ) {
+		                pageid.push( id );
+	              }
+                var wikipagetext = data.query.pages[id].extract;
+                var wikipagetext = wikipagetext.substr(0, wikipagetext.indexOf('='));
+                var answer = wikipagetext + " Quelle: wikipedia";
+                sendanswer(answer);
+					});
+        }
     }
-    else if(message.toUpperCase().includes('WER') && message.toUpperCase().includes('MARK ZUCKERBERG')){
-      var answer = "Mark Zuckerberg ist der Gründer von Facebook. Ihm gehören zudem die Apps WhatsApp und Instagram. Er ist 36 Jahre alt.";
-      sendanswer(answer);
-    }
-    else if(message.toUpperCase().includes('WER') && message.toUpperCase().includes('DONALD TRUMP')){
-      var answer = "Donald Trump war von 2016 bis 2020 Präsident von Amerika/USA. Er ist 74 Jahre alt.";
-      sendanswer(answer);
-    }
-    else if(message.toUpperCase().includes('WER') && message.toUpperCase().includes('PRÄSIDENT')){
-      var answer = "Joe Biden ist ab Januar 2021 Präsident von Amerika.";
-      sendanswer(answer);
-      newsuggestion('Wer ist Donald Trump?');
-      newsuggestion('Wer ist Joe Biden?');
-    }
-    else if(message.toUpperCase().includes('WER') && message.toUpperCase().includes('JEFF BEZOS')){
-      var answer = "Jeff Bezos ist der Gründer und CEO von Amazon. Er gilt als reichste Person der Welt. Er ist 56 Jahre alt. Quelle: wikipedia";
-      sendanswer(answer);
-    }
-    else if(message.toUpperCase().includes('WER') && message.toUpperCase().includes('BILL GATES')){
-      var answer = "Bill Gates ist einer der Gründer von Microsoft. Er gilt als eine der reichsten Personen der Welt. Er ist 65 Jahre alt. Quelle: wikipedia";
-      sendanswer(answer);
-    }
-    else if(message.toUpperCase().includes('WER') && message.toUpperCase().includes('JOE BIDEN')){
-      var answer = "Joe Biden gewann 2020 die US Wahlen und ist damit ab Januar 2021 der Präsident von Amerika. Er ist 77 Jahre alt. Quelle: wikipedia";
-      sendanswer(answer);
-    }
-    else if(message.toUpperCase().includes('WER') && message.toUpperCase().includes('ALBERT EINSTEIN')){
-      var answer = "Albert Einstein war ein deutscher Physiker. Er entdeckte viele wichtige Dinge, welche wir heuten noch brauchen. Er gewann 1921/1922 einen Nobelpreis. Er wurde 76 Jahre alt. Quelle: wikipedia";
-      sendanswer(answer);
-    }
-    else if(message.toUpperCase().includes('WER') && message.toUpperCase().includes('KONRAD ZUSE')){
-      var answer = "Konrad Zuse erfand den ersten funktionierenden Computer. Er wurde 85 Jahre alt. Quelle: wikipedia";
-      sendanswer(answer);
-    }
+
     else if(message.toUpperCase().includes('ÄLTESTER') && message.toUpperCase().includes('MENSCH')){
       var answer = "Die älteste Person die jemals lebte wurde 122 Jahre alt und starb 1997. Sie hiess Jeanne Calment und war Französin. Quelle: weser-kurier.de";
       sendanswer(answer);
