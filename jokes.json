@@ -1,0 +1,42 @@
+{
+  "name": "Jokes",
+  "lang": "DE",
+  "jokes": [
+    {
+      "joke": "Ich habe mit der Pflanze ausgemacht, sie nur noch einmal im Monat zu gießen. Sie ist darauf eingegangen.",
+      "source": "unknown",
+    },
+    {
+      "joke": "Ich habe einen Joghurt fallen gelassen. Er war nicht mehr haltbar.",
+      "source": "unknown",
+    },
+    {
+      "joke": "Ich esse nicht jede Sorte Chips. Ich bin da sehr pringelig.",
+      "source": "unknown",
+    },
+    {
+      "joke": "Hab mich vorhin ausgesperrt. War ganz aus dem Häuschen.",
+      "source": "unknown",
+    },
+    {
+      "joke": "Ich wollte Spiderman anrufen, er hatte aber kein Netz.",
+      "source": "unknown",
+    },
+    {
+      "joke": "Hab mir neulich ein Dach gekauft, ging aufs Haus. 🏠",
+      "source": "unknown",
+    },
+    {
+      "joke": "Ich habe gestern ein Brötchen angerufen, aber es war belegt. 🍞",
+      "source": "unknown",
+    },
+    {
+      "joke": "Egal wie tief du schläfst, Albert schläft wie Einstein.",
+      "source": "unknown",
+    },
+    {
+      "joke": "Egal wie gut du fährst, Züge fahren Güter.",
+      "source": "unknown",
+    },
+  ]
+}
