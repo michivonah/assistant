@@ -1,13 +1,13 @@
 this.addEventListener('install', function(event) {
   event.waitUntil(
-    caches.open('v1').then(function(cache) {
+    caches.open('v1.1').then(function(cache) {
       return cache.addAll([
         '/assistant/',
-        '/index.html',
-        '/style.css',
-        '/script.js',
-        '/logo.png',
-        '/new-message.mp3'
+        '/assistant/index.html',
+        '/assistant/style.css',
+        '/assistant/script.js',
+        '/assistant/logo.png',
+        '/assistant/new-message.mp3'
       ]);
     })
   );
