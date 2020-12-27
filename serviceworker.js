@@ -1,9 +1,22 @@
-self.addEventListener('push', event => {
+this.addEventListener('install', function(event) {
   event.waitUntil(
-    self.registration.showNotification('Testbenachrichtigung', {
-      body: 'Diese Benachrichtigung können sie löschen und wird nicht weiter benötigt.',
-      icon: 'https://michivonah.github.io/assistant/logo.png',
-      tag: 'notification'
-    });
+    caches.open('v1').then(function(cache) {
+      return cache.addAll([
+        '/assistant/',
+        '/index.html',
+        '/style.css',
+        '/script.js',
+        '/logo.png',
+        '/new-message.mp3'
+      ]);
+    })
+  );
+});
+
+this.addEventListener('fetch', function(event) {
+  event.respondWith(
+    caches.match(event.request).catch(function() {
+      return fetch(event.request);
+    })
   );
 });
