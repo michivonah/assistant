@@ -812,4 +812,16 @@ $(document).ready(function() {
     document.title = "Tap";
     var darkmode = true;
       }
+
+      // register service worker, script from tutorial: https://developer.mozilla.org/de/docs/Web/API/Service_Worker_API/Using_Service_Workers
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('serviceworker.js').then(function(reg) {
+          // Registrierung erfolgreich
+          console.log('Registrierung erfolgreich. Scope ist ' + reg.scope);
+        }).catch(function(error) {
+          // Registrierung fehlgeschlagen
+          console.log('Registrierung fehlgeschlagen mit ' + error);
+        });
+      };
+
     });
